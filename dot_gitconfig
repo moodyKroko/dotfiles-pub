@@ -1,0 +1,44 @@
+[user]
+	name = Russel
+	email = 59341541+moodyKroko@users.noreply.github.com
+[core]
+    editor=vim
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+    filemode = false
+    pager = less -FRSX
+[rerere]
+    enabled = true
+    autoupdate = true
+[push]
+    default = simple
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
+    pager = true
+    filemode = false
+[submodule]
+	recurse = true
+	fetchJobs = 0
+[rebase]
+	autoStash = true
+[merge]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    keepBackup = false
+    trustExitCode = false
+[diff]
+    tool = kdiff3
+[init]
+    defaultBranch = main
+[github]
+    user = moodyKroko
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
