@@ -108,7 +108,7 @@ function wezconf {
 # edit vim setting
 function vconf
 {
-  $nvim_config = [System.IO.Path]::Combine($HOME, "AppData\Local\nvim\init.lua")
+  $nvim_config = [System.IO.Path]::Combine($HOME, ".config\nvim\init.lua")
   nvim $nvim_config
 }
 
