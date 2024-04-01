@@ -1,5 +1,5 @@
 README.md
-{{- if ne .chezmoi.os "Windows_NT"}}
+{{- if ne .chezmoi.os "windows"}}
 Documents/PowerShell/Microsoft.PowerShell_profile.ps1
 Documents/PowerShell/star.omp.json
 {{- end}}
