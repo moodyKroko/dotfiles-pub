@@ -42,6 +42,8 @@ config.window_padding = {
 	bottom = 0,
 }
 
+config.exit_behavior = "Close"
+
 config.launch_menu = launch_menu
 
 wezterm.on("gui-startup", function(cmd)
@@ -64,12 +66,12 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.background = {
 	{
 		source = {
-			File = os.getenv("UserProfile") .. '/.config/wezterm/bg-wallpaper.jpg'
+			File = os.getenv("UserProfile") .. "/.config/wezterm/bg-wallpaper.jpg",
 		},
-    attachment = "Fixed",
-    hsb = dimmer,
-    vertical_align = "Middle",
-    horizontal_align = "Center"
+		attachment = "Fixed",
+		hsb = dimmer,
+		vertical_align = "Middle",
+		horizontal_align = "Center",
 	},
 }
 
