@@ -95,13 +95,13 @@ wezterm.on("gui-startup", function()
 	-- use this once you are working on a project
 	-- "E:/Projects/React/valentine-site"
 
-	local project_dir = "E:/Projects/React/my-weather-app"
+	local project_dir = "E:/Projects/React"
 	local _, build_pane, window = mux.spawn_window({
 		-- setup initial starting position
 		position = { x = 900, y = 5 },
 		cwd = project_dir,
 	})
-	build_pane:send_text("npm run dev\\n")
+	build_pane:send_text("npm run dev\n")
 
 	-- split pane for server and console if needed
 	-- local console_pane = build_pane:split({
