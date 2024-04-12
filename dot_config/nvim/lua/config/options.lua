@@ -22,6 +22,9 @@ opt.backup = false
 opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.undodir = (os.getenv("UserProfile") or os.getenv("HOME")) .. "/.vim/undodir"
 
+-- formatoptions
+opt.formatoptions:remove({'r', 'o'})
+
 -- highlights
 opt.winblend = 0
 opt.pumblend = 0
