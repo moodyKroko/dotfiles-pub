@@ -46,12 +46,12 @@ config.exit_behavior = "Close"
 
 config.launch_menu = launch_menu
 
-wezterm.on("gui-startup", function(cmd)
-	local tab, build_pane, window = mux.spawn_window({
-		position = { x = 900, y = 5 },
-		workspace = "start",
-	})
-end)
+-- wezterm.on("gui-startup", function(cmd)
+-- 	local tab, build_pane, window = mux.spawn_window({
+-- 		position = { x = 900, y = 5 },
+-- 		workspace = "start",
+-- 	})
+-- end)
 
 config.initial_rows = 42
 config.initial_cols = 100
@@ -91,39 +91,35 @@ config.inactive_pane_hsb = {
 }
 
 -- on wezterm startup
--- wezterm.on("gui-startup", function(cmd)
--- use this once you are working on a project
--- local args = {}
+wezterm.on("gui-startup", function()
+	-- use this once you are working on a project
+	-- "E:/Projects/React/valentine-site"
 
--- -- setup a workspace for coding on current project
--- local project_dir = "E:/Projects/React/valentine-site"
--- setup initial starting position
--- local tab, build_pane, window = mux.spawn_window({
--- 	position = { x = 900, y = 5 },
--- })
+	local project_dir = "E:/Projects/React/my-weather-app"
+	local _, build_pane, window = mux.spawn_window({
+		-- setup initial starting position
+		position = { x = 900, y = 5 },
+		cwd = project_dir,
+	})
+	build_pane:send_text("npm run dev\\n")
 
--- -- open another tab for terminal
--- local _, editor_pane, _ = window:spawn_tab({})
---
--- -- open window with 2 split pane for server and console
--- local console_pane = build_pane:split({
--- 	direction = "Top",
--- 	size = 0.5,
--- 	cwd = project_dir,
--- })
---  build_pane:send_text 'npm run dev\n'
+	-- split pane for server and console if needed
+	-- local console_pane = build_pane:split({
+	-- 	direction = "Top",
+	-- 	size = 0.6,
+	-- 	cwd = project_dir,
+	-- })
 
--- new workspace
--- local tab, pane, window = mux.spawn_window({
--- 	workspace = "base",
---    cwd = wezterm.home_dir .. '/wezterm',
--- })
+	-- open another tab for terminal
+	local _, editor_pane, _ = window:spawn_tab({
+		cwd = project_dir,
+	})
 
--- set startup coding workspace
--- 	mux.set_active_workspace("base")
--- end)
+	-- set startup coding workspace
+	mux.set_active_workspace("base")
+end)
 
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-right-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
