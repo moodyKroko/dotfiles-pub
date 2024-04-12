@@ -17,6 +17,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.opt.formatoptions:remove { "c", "r", "o" }
+  end,
+  desc = "Disable New Line Comment",
+})
+
 -- Disable autoformat for files in list
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua" },
