@@ -15,8 +15,8 @@ Set-PSReadLineOption -PredictionSource History
 # Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Chord Tab -Function AcceptSuggestion
 ## Fzf (fuzzy file finder)
-# Import-Module PSFzf
-#Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist 'Ctrl+r'
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist 'Ctrl+r'
 
 # Undo some alias
 Remove-Item alias:rm
