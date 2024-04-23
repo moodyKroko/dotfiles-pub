@@ -66,9 +66,13 @@ function c
   Clear-Host
 }
 
-function ll
-{
-  Get-ChildItem -Force -File
+# function ll
+# {
+#   Get-ChildItem -Force -File
+# }
+
+function ll {
+  eza --color=always --long --git --no-filesize --icons=always --no-user --all
 }
 
 function rm {
