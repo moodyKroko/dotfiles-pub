@@ -72,7 +72,7 @@ function c
 # }
 
 function ll {
-  eza --color=always --long --git --no-filesize --icons=always --no-user --all
+  eza --color=always --long --git --no-filesize --icons=always --no-user --all --group-directories-first --sort name
 }
 
 function rm {
