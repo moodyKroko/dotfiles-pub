@@ -101,7 +101,7 @@ wezterm.on("gui-startup", function()
 		position = { x = 900, y = 5 },
 		cwd = project_dir,
 	})
-	build_pane:send_text("npm run dev\n")
+	-- build_pane:send_text("npm run dev\n")
 
 	-- split pane for server and console if needed
 	-- local console_pane = build_pane:split({
