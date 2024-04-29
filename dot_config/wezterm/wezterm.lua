@@ -92,23 +92,12 @@ config.inactive_pane_hsb = {
 
 -- on wezterm startup
 wezterm.on("gui-startup", function()
-	-- use this once you are working on a project
-	-- "E:/Projects/React/valentine-site"
-
-	local project_dir = "E:/Projects/React"
-	local _, build_pane, window = mux.spawn_window({
+	local project_dir = wezterm.home_dir .. '/wezterm'
+	local _, _, window = mux.spawn_window({
 		-- setup initial starting position
 		position = { x = 900, y = 5 },
 		cwd = project_dir,
 	})
-	-- build_pane:send_text("npm run dev\n")
-
-	-- split pane for server and console if needed
-	-- local console_pane = build_pane:split({
-	-- 	direction = "Top",
-	-- 	size = 0.6,
-	-- 	cwd = project_dir,
-	-- })
 
 	-- open another tab for terminal
 	local _, editor_pane, _ = window:spawn_tab({
