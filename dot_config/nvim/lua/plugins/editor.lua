@@ -44,6 +44,7 @@ return {
 	{
 		"rmagatti/auto-session",
 		-- lazy = true,
+    event = "ExitPre",
 		config = function()
 			require("auto-session").setup({
 			})
