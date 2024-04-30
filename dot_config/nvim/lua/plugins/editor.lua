@@ -43,6 +43,7 @@ return {
 	-- auto sessions
 	{
 		"rmagatti/auto-session",
+		lazy = true,
 		config = function()
 			require("auto-session").setup({
 				log_level = "error",
