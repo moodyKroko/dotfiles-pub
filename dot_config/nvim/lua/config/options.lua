@@ -22,7 +22,19 @@ opt.backup = false
 opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.undodir = (os.getenv("UserProfile") or os.getenv("HOME")) .. "/.vim/undodir"
 
-opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = {
+  "buffers",
+  "curdir",
+  "folds",
+  "help",
+  "globals",
+  "tabpages",
+  "winsize",
+  "winpos",
+  "terminal",
+  "skiprtp",
+  "localoptions",
+}
 
 -- highlights
 opt.winblend = 0
@@ -45,17 +57,17 @@ opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
 
 if os.getenv("os") == "Windows_NT" then
-	-- terminal settings
-	local powershell_opts = {
-		shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-		shellcmdflag = "-NoLogo -NoProfile -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-		shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-		shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-		shellquote = "",
-		shellxquote = "",
-	}
+  -- terminal settings
+  local powershell_opts = {
+    shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+    shellcmdflag = "-NoLogo -NoProfile -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+    shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+    shellquote = "",
+    shellxquote = "",
+  }
 
-	for option, value in pairs(powershell_opts) do
-		vim.opt[option] = value
-	end
+  for option, value in pairs(powershell_opts) do
+    vim.opt[option] = value
+  end
 end
