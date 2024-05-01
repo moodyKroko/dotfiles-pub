@@ -44,10 +44,10 @@ return {
 	{
 		"rmagatti/auto-session",
 		-- lazy = true,
-    event = "ExitPre",
+		event = "BufReadPre",
+		opts = { options = vim.opt.sessionoptions:get() },
 		config = function()
-			require("auto-session").setup({
-			})
+			require("auto-session").setup({})
 		end,
 	},
 }
