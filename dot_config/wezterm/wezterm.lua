@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local session_manager = require("wezterm-session-manager/session-manager")
 local mux = wezterm.mux
 local act = wezterm.action
 
@@ -92,7 +93,7 @@ config.inactive_pane_hsb = {
 
 -- on wezterm startup
 wezterm.on("gui-startup", function()
-	local project_dir = wezterm.home_dir .. '/wezterm'
+	local project_dir = wezterm.home_dir .. "/wezterm"
 	local _, _, window = mux.spawn_window({
 		-- setup initial starting position
 		position = { x = 900, y = 5 },
@@ -123,6 +124,18 @@ wezterm.on("format-tab-title", function(tab)
 	end
 
 	return string.gsub(title_str, "(.*[/\\])(.*)", "%2")
+end)
+
+wezterm.on("save_session", function(window)
+	session_manager.save_state(window)
+end)
+
+wezterm.on("load_session", function(window)
+	session_manager.load_state(window)
+end)
+
+wezterm.on("restore_session", function(window)
+	session_manager.restore_state(window)
 end)
 
 -- Keys config
@@ -157,6 +170,7 @@ config.keys = {
 
 	-- close pane
 	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
 
@@ -166,6 +180,7 @@ config.keys = {
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
+
 	-- Switch workspace relatively
 	{
 		mods = "LEADER|SHIFT",
@@ -177,6 +192,11 @@ config.keys = {
 		mods = "LEADER|SHIFT",
 		action = act.SwitchWorkspaceRelative(1),
 	},
+
+	-- save/load/restore sessions
+	{ key = "S", mods = "LEADER", action = wezterm.action({ EmitEvent = "save_session" }) },
+	{ key = "L", mods = "LEADER", action = wezterm.action({ EmitEvent = "load_session" }) },
+	{ key = "R", mods = "LEADER", action = wezterm.action({ EmitEvent = "restore_session" }) },
 
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
@@ -195,7 +215,7 @@ config.keys = {
 
 	-- Rename a tab
 	{
-		key = "R",
+		key = "r",
 		mods = "LEADER",
 		action = act.PromptInputLine({
 			description = "Enter new name",
