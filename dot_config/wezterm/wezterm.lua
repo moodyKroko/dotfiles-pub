@@ -194,14 +194,14 @@ config.keys = {
 	},
 
 	-- save/load/restore sessions
-	{ key = "S", mods = "LEADER", action = wezterm.action({ EmitEvent = "save_session" }) },
-	{ key = "L", mods = "LEADER", action = wezterm.action({ EmitEvent = "load_session" }) },
-	{ key = "R", mods = "LEADER", action = wezterm.action({ EmitEvent = "restore_session" }) },
+	{ key = "S", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "save_session" }) },
+	{ key = "L", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "load_session" }) },
+	{ key = "R", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "restore_session" }) },
 
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
 	{
-		key = "r",
+		key = "rr",
 		mods = "LEADER",
 		action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
 	},
