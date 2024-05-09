@@ -201,8 +201,8 @@ config.keys = {
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
 	{
-		key = "rr",
-		mods = "LEADER",
+		key = "r",
+		mods = "LEADER|ALT",
 		action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
 	},
 
