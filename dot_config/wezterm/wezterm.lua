@@ -145,9 +145,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		{ Attribute = { Intensity = "Bold" } },
 		{ Text = " " .. fTitle .. " " },
 	})
-
-	-- set startup coding workspace
-	mux.set_active_workspace("base")
 end)
 
 wezterm.on("update-right-status", function(window)
