@@ -4,9 +4,45 @@ local session_manager = require("wezterm-session-manager/session-manager")
 local mux = wezterm.mux
 local act = wezterm.action
 
+-- functions
+local process_icons = {
+	["docker"] = wezterm.nerdfonts.linux_docker,
+	["docker-compose"] = wezterm.nerdfonts.linux_docker,
+	["psql"] = wezterm.nerdfonts.dev_postgresql,
+	["kuberlr"] = wezterm.nerdfonts.linux_docker,
+	["kubectl"] = wezterm.nerdfonts.linux_docker,
+	["stern"] = wezterm.nerdfonts.linux_docker,
+	["nvim"] = wezterm.nerdfonts.custom_vim,
+	["make"] = wezterm.nerdfonts.seti_makefile,
+	["vim"] = wezterm.nerdfonts.dev_vim,
+	["go"] = wezterm.nerdfonts.seti_go,
+	["zsh"] = wezterm.nerdfonts.dev_terminal,
+	["bash"] = wezterm.nerdfonts.cod_terminal_bash,
+	["btm"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+	["htop"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+	["cargo"] = wezterm.nerdfonts.dev_rust,
+	["sudo"] = wezterm.nerdfonts.fa_hashtag,
+	["lazydocker"] = wezterm.nerdfonts.linux_docker,
+	["git"] = wezterm.nerdfonts.dev_git,
+	["lua-language-server"] = wezterm.nerdfonts.seti_lua,
+	["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
+	["curl"] = wezterm.nerdfonts.mdi_flattr,
+	["gh"] = wezterm.nerdfonts.dev_github_badge,
+	["ruby"] = wezterm.nerdfonts.cod_ruby,
+	["pwsh"] = wezterm.nerdfonts.seti_powershell,
+	["node"] = wezterm.nerdfonts.dev_nodejs_small,
+	["dotnet"] = wezterm.nerdfonts.md_language_csharp,
+}
+
+local function basename(s)
+	return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
 -- This table will hold the configuration.
 local config = {}
+
 local launch_menu = {}
+
 local dimmer = { brightness = 0.04 }
 
 -- In newer versions of wezterm, use the config_builder which will
@@ -17,6 +53,16 @@ end
 
 -- Spawn a powershell in login mode
 config.default_prog = { "pwsh.exe", "-NoLogo" }
+
+config.window_padding = {
+	left = 5,
+	right = 0,
+	top = 0,
+	bottom = 0,
+}
+
+config.exit_behavior = "Close"
+config.debug_key_events = true
 
 table.insert(launch_menu, {
 	label = "PowerShell",
@@ -36,23 +82,14 @@ table.insert(launch_menu, {
 	},
 })
 
-config.window_padding = {
-	left = 5,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
-
-config.exit_behavior = "Close"
-
 config.launch_menu = launch_menu
 
--- wezterm.on("gui-startup", function(cmd)
--- 	local tab, build_pane, window = mux.spawn_window({
--- 		position = { x = 900, y = 5 },
--- 		workspace = "start",
--- 	})
--- end)
+wezterm.on("gui-startup", function()
+	local _, _, _ = mux.spawn_window({
+		position = { x = 900, y = 5 },
+		workspace = "start",
+	})
+end)
 
 config.initial_rows = 42
 config.initial_cols = 100
@@ -76,12 +113,10 @@ config.background = {
 	},
 }
 
-config.hide_tab_bar_if_only_one_tab = true
-
 config.line_height = 1.2 -- default font is 12
 config.font = wezterm.font_with_fallback({
 	"Hack",
-	"JetBrains Mono",
+	"JetBrainsMono Nerd Font",
 	"Fira Code",
 })
 
@@ -91,18 +126,24 @@ config.inactive_pane_hsb = {
 	brightness = 0.7,
 }
 
--- on wezterm startup
-wezterm.on("gui-startup", function()
-	local project_dir = wezterm.home_dir .. "/wezterm"
-	local _, _, window = mux.spawn_window({
-		-- setup initial starting position
-		position = { x = 900, y = 5 },
-		cwd = project_dir,
-	})
+config.use_fancy_tab_bar = false
+config.status_update_interval = 1000
+config.tab_max_width = 60
+config.tab_bar_at_bottom = true
+config.hide_tab_bar_if_only_one_tab = true
+config.show_new_tab_button_in_tab_bar = false
 
-	-- open another tab for terminal
-	local _, editor_pane, _ = window:spawn_tab({
-		cwd = project_dir,
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local pane = tab.active_pane
+	local title = basename(pane.foreground_process_name:match("([^/\\]+).exe$"))
+
+	local icon = process_icons[title] or wezterm.nerdfonts.seti_checkbox_unchecked
+
+  local fTitle = string.format(' %s %s',  icon, title)
+
+	return wezterm.format({
+		{ Attribute = { Intensity = "Bold" } },
+		{ Text = " " .. fTitle .. " " },
 	})
 
 	-- set startup coding workspace
@@ -113,19 +154,7 @@ wezterm.on("update-right-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
-wezterm.on("format-tab-title", function(tab)
-	local title = tab.tab_title
-	local title_str = ""
-
-	if title and #title > 0 then
-		title_str = title
-	else
-		title_str = tab.active_pane.title
-	end
-
-	return string.gsub(title_str, "(.*[/\\])(.*)", "%2")
-end)
-
+-- session-manager
 wezterm.on("save_session", function(window)
 	session_manager.save_state(window)
 end)
@@ -181,6 +210,29 @@ config.keys = {
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
 
+	-- Prompt for a name to use for a new workspace and switch to it
+	{
+		key = "w",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
+
 	-- Switch workspace relatively
 	{
 		mods = "LEADER|SHIFT",
@@ -194,9 +246,9 @@ config.keys = {
 	},
 
 	-- save/load/restore sessions
-	{ key = "S", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "save_session" }) },
-	{ key = "L", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "load_session" }) },
-	{ key = "R", mods = "LEADER|SHIFT", action = wezterm.action({ EmitEvent = "restore_session" }) },
+	{ key = "S", mods = "LEADER|SHIFT", action = act.EmitEvent("save_session") },
+	{ key = "L", mods = "LEADER|SHIFT", action = act.EmitEvent("load_session") },
+	{ key = "r", mods = "LEADER|SHIFT", action = act.EmitEvent("restore_session") },
 
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
