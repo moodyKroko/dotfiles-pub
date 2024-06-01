@@ -73,4 +73,16 @@ return {
       },
     },
   },
+
+  -- trouble
+  {
+    "folke/trouble.nvim",
+    keys = {
+      {
+        "<leader>cS",
+        "<cmd>Trouble lsp toggle focus=false<cr>",
+        desc = "LSP references/definitions/... (Trouble)",
+      },
+    },
+  },
 }
