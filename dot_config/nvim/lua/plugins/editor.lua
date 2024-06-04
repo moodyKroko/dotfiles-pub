@@ -48,6 +48,7 @@ return {
   -- auto sessions
   {
     "rmagatti/auto-session",
+    enabled = false,
     lazy = false,
     opts = {
       log_level = "error",
