@@ -22,19 +22,7 @@ opt.backup = false
 opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.undodir = (os.getenv("UserProfile") or os.getenv("HOME")) .. "/.vim/undodir"
 
-opt.sessionoptions = {
-  "buffers",
-  "curdir",
-  "folds",
-  "help",
-  "globals",
-  "tabpages",
-  "winsize",
-  "winpos",
-  "terminal",
-  "skiprtp",
-  "localoptions",
-}
+opt.sessionoptions = "buffers,curdir,folds,help,globals,tabpages,winsize,winpos,terminal,skiprtp,localoptions"
 
 -- highlights
 opt.winblend = 0
