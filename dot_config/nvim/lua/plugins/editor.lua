@@ -93,4 +93,13 @@ return {
       },
     },
   },
+
+  {
+    "which-key.nvim",
+    opts = {
+      defaults = {
+        ["<leader>dv"] = { name = "+diffview"}
+      }
+    },
+  },
 }
