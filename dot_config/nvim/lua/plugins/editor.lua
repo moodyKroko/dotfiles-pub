@@ -78,4 +78,19 @@ return {
       },
     },
   },
+
+  {
+    "sindrets/diffview.nvim",
+    lazy = true,
+    opts = {},
+    cmd = "DiffviewOpen",
+    keys = {
+      {
+        "<leader>dvo",
+        "<cmd>DiffviewOpen<cr>",
+        mode = { "n" },
+        desc = "Open a diff view in another tab",
+      },
+    },
+  },
 }
