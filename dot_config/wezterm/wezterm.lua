@@ -135,14 +135,13 @@ config.show_new_tab_button_in_tab_bar = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local pane = tab.active_pane
-	local title = basename(pane.foreground_process_name:match("([^/\\]+).exe$"))
+	local title = pane.title:match("([^/\\]+).exe$")
 
 	local icon = process_icons[title] or wezterm.nerdfonts.seti_checkbox_unchecked
 
-  local fTitle = string.format(' %s %s',  icon, title)
+	local fTitle = string.format(" %s %s", title, icon)
 
 	return wezterm.format({
-		{ Attribute = { Intensity = "Bold" } },
 		{ Text = " " .. fTitle .. " " },
 	})
 end)
@@ -152,15 +151,15 @@ wezterm.on("update-right-status", function(window)
 end)
 
 -- session-manager
-wezterm.on("save_session", function(window)
-	session_manager.save_state(window)
+wezterm.on("save_state", function(window, pane)
+	session_manager.save_state(window, pane)
 end)
 
-wezterm.on("load_session", function(window)
-	session_manager.load_state(window)
+wezterm.on("load_state", function(window)
 end)
+	session_manager.load_state()
 
-wezterm.on("restore_session", function(window)
+wezterm.on("restore_state", function(window)
 	session_manager.restore_state(window)
 end)
 
@@ -243,9 +242,9 @@ config.keys = {
 	},
 
 	-- save/load/restore sessions
-	{ key = "S", mods = "LEADER|SHIFT", action = act.EmitEvent("save_session") },
-	{ key = "L", mods = "LEADER|SHIFT", action = act.EmitEvent("load_session") },
-	{ key = "r", mods = "LEADER|SHIFT", action = act.EmitEvent("restore_session") },
+	{ key = "S", mods = "LEADER|SHIFT", action = act({ EmitEvent = "save_state" }) },
+	{ key = "L", mods = "LEADER|SHIFT", action = act({ EmitEvent = "load_state" }) },
+	{ key = "R", mods = "LEADER|SHIFT", action = act({ EmitEvent = "restore_state" }) },
 
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
