@@ -49,13 +49,16 @@ return {
   -- auto sessions
   {
     "rmagatti/auto-session",
-    event = { { "VimEnter", "VimLeavePre" } }, -- { "VimEnter", "VimLeavePre" },
-    opts = {
-      log_level = "error",
-      auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" }, -- "C:\\", "C:\\Users\\james"
-      auto_session_use_git_branch = false,
-      pre_save_cmds = { "Neotree close" },
-    },
+    -- event = { { "VimLeavePre" } }, -- { "VimEnter", "VimLeavePre" },
+    lazy = false,
+    config = function()
+      require("auto-session").setup({
+        log_level = vim.log.levels.ERROR,
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" }, -- "C:\\", "C:\\Users\\james"
+        auto_session_use_git_branch = false,
+        -- pre_save_cmds = { "Neotree close" },
+      })
+    end,
     keys = {
       {
         "<leader>fs",
@@ -98,8 +101,8 @@ return {
     "which-key.nvim",
     opts = {
       defaults = {
-        ["<leader>dv"] = { name = "+diffview"}
-      }
+        ["<leader>dv"] = { name = "+diffview" },
+      },
     },
   },
 }
