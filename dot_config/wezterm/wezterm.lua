@@ -155,9 +155,9 @@ wezterm.on("save_state", function(window, pane)
 	session_manager.save_state(window, pane)
 end)
 
-wezterm.on("load_state", function(window)
-end)
+wezterm.on("load_state", function()
 	session_manager.load_state()
+end)
 
 wezterm.on("restore_state", function(window)
 	session_manager.restore_state(window)
