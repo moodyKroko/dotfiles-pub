@@ -56,7 +56,7 @@ alias less='less --quit-at-eof --no-init --tabs=4 --RAW-CONTROL-CHARS'
 alias more='less'
 
 # Add colors to 'ls'.
-alias ls='ls -GF'
+alias ls='ls -alGF'
 
 # Add color to 'grep' and relatives (when not piped or redirected).
 alias grep='grep --color=auto'
