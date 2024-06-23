@@ -56,10 +56,10 @@ function tig
   'C:\Program Files\Git\usr\bin\tig.exe'
 }
 
-function less
-{
-  'C:\Program Files\Git\usr\bin\less.exe'
-}
+#function less
+#{
+#  'C:\Program Files\Git\usr\bin\less.exe'
+#}
 
 function c
 {
