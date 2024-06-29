@@ -58,6 +58,18 @@ return {
         auto_session_use_git_branch = false,
         -- pre_save_cmds = { "Neotree close" },
       })
+
+      vim.diagnostic.config({
+        -- update_in_insert = true,
+        float = {
+          focusable = false,
+          style = "minimal",
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        },
+      })
     end,
     keys = {
       {
