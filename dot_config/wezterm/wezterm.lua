@@ -1,10 +1,19 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
-local session_manager = require("wezterm-session-manager/session-manager")
 local mux = wezterm.mux
 local act = wezterm.action
 
 -- functions
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+
+	if title and #title > 0 then
+		return title
+	end
+
+	return tab_info.active_pane.title
+end
+
 local process_icons = {
 	["docker"] = wezterm.nerdfonts.linux_docker,
 	["docker-compose"] = wezterm.nerdfonts.linux_docker,
@@ -32,11 +41,8 @@ local process_icons = {
 	["pwsh"] = wezterm.nerdfonts.seti_powershell,
 	["node"] = wezterm.nerdfonts.dev_nodejs_small,
 	["dotnet"] = wezterm.nerdfonts.md_language_csharp,
+	["terminal"] = wezterm.nerdfonts.seti_powershell,
 }
-
-local function basename(s)
-	return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
 
 -- This table will hold the configuration.
 local config = {}
@@ -134,8 +140,12 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local pane = tab.active_pane
-	local title = pane.title:match("([^/\\]+).exe$")
+	local title = tab_title(tab)
+
+	-- remove .exe from string if it contains .exe
+	if string.match(title, ".exe") then
+		title = title:match("([^/\\]+).exe$")
+	end
 
 	local icon = process_icons[title] or wezterm.nerdfonts.seti_checkbox_unchecked
 
@@ -148,19 +158,6 @@ end)
 
 wezterm.on("update-right-status", function(window)
 	window:set_right_status(window:active_workspace())
-end)
-
--- session-manager
-wezterm.on("save_state", function(window, pane)
-	session_manager.save_state(window, pane)
-end)
-
-wezterm.on("load_state", function()
-	session_manager.load_state()
-end)
-
-wezterm.on("restore_state", function(window)
-	session_manager.restore_state(window)
 end)
 
 -- Keys config
