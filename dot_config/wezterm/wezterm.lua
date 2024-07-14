@@ -38,10 +38,11 @@ local process_icons = {
 	["curl"] = wezterm.nerdfonts.mdi_flattr,
 	["gh"] = wezterm.nerdfonts.dev_github_badge,
 	["ruby"] = wezterm.nerdfonts.cod_ruby,
-	["pwsh"] = wezterm.nerdfonts.seti_powershell,
+	["pwsh"] = wezterm.nerdfonts.md_powershell,
 	["node"] = wezterm.nerdfonts.dev_nodejs_small,
 	["dotnet"] = wezterm.nerdfonts.md_language_csharp,
-	["terminal"] = wezterm.nerdfonts.seti_powershell,
+	["terminal"] = wezterm.nerdfonts.md_powershell,
+  ["editor"] = wezterm.nerdfonts.cod_code
 }
 
 -- This table will hold the configuration.
