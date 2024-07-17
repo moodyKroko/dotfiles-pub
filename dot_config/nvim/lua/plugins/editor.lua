@@ -54,21 +54,15 @@ return {
     config = function()
       require("auto-session").setup({
         log_level = vim.log.levels.ERROR,
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" }, -- "C:\\", "C:\\Users\\james"
+
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_restore_enabled = true,
+
+        -- "C:\\", "C:\\Users\\james"
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" },
         auto_session_use_git_branch = false,
         -- pre_save_cmds = { "Neotree close" },
-      })
-
-      vim.diagnostic.config({
-        -- update_in_insert = true,
-        float = {
-          focusable = false,
-          style = "minimal",
-          border = "rounded",
-          source = "always",
-          header = "",
-          prefix = "",
-        },
       })
     end,
     keys = {

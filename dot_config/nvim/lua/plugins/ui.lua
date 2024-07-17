@@ -81,7 +81,16 @@ return {
     "nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = false,
+        virtual_text = true,
+        update_in_insert = false,
+        float = {
+          focusable = false,
+          style = "minimal",
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = " ",

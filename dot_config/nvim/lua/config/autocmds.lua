@@ -33,21 +33,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Show line diagnostics automatically in specific cursor position
-local util = require("lazyvim.util.lsp")
-util.on_attach(function(_, bufnr)
-  vim.api.nvim_create_autocmd("CursorHold", {
-    buffer = bufnr,
-    callback = function()
-      local opts = {
-        focusable = false,
-        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        border = "rounded",
-        source = "always",
-        prefix = "● ",
-        scope = "cursor",
-      }
-
-      vim.diagnostic.open_float(nil, opts)
-    end,
-  })
-end)
+-- local util = require("lazyvim.util.lsp")
+-- util.on_attach(function(_, bufnr)
+--   vim.api.nvim_create_autocmd("CursorHold", {
+--     buffer = bufnr,
+--     callback = function()
+--       local opts = {
+--         focusable = false,
+--         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+--         border = "rounded",
+--         source = "always",
+--         prefix = "● ",
+--         scope = "cursor",
+--       }
+--
+--       vim.diagnostic.open_float(nil, opts)
+--     end,
+--   })
+-- end)
