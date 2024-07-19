@@ -18,6 +18,9 @@ Set-PSReadLineKeyHandler -Chord Tab -Function AcceptSuggestion
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist 'Ctrl+r'
 
+# Import env variables script
+. "$HOME\env_variables.ps1"
+
 # Undo some alias
 Remove-Item alias:rm
 
