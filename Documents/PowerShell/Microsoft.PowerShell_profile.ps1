@@ -1,5 +1,7 @@
 # Load prompt config
-oh-my-posh --init --shell pwsh --config C:\Users\james\Documents\PowerShell\star.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config 'https://raw.githubusercontent.com/moodyKroko/dotfiles-pub/main/Documents/PowerShell/robbyrussel.omp.json' | Invoke-Expression
+#star
+#oh-my-posh init pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/star.omp.json' | Invoke-Expression
 
 ## Icons
 Import-Module -Name Terminal-Icons
@@ -17,9 +19,6 @@ Set-PSReadLineKeyHandler -Chord Tab -Function AcceptSuggestion
 ## Fzf (fuzzy file finder)
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist 'Ctrl+r'
-
-# Import env variables script
-. "$HOME\env_variables.ps1"
 
 # Undo some alias
 Remove-Item alias:rm
