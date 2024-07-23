@@ -56,8 +56,8 @@ return {
         log_level = vim.log.levels.ERROR,
 
         auto_session_enabled = true,
-        auto_save_enabled = true,
-        auto_restore_enabled = true,
+        -- auto_save_enabled = true,
+        -- auto_restore_enabled = true,
 
         -- "C:\\", "C:\\Users\\james"
         auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" },
