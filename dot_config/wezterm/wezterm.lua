@@ -93,12 +93,14 @@ config.launch_menu = launch_menu
 
 wezterm.on("gui-startup", function()
 	local _, _, _ = mux.spawn_window({
-		position = { x = 900, y = 5 },
+		-- x = 900 single monitor, y = 5
+		-- x = 1981 double monitor, y = 422
+		position = { x = 900, y = 5, origin = "MainScreen" },
 		workspace = "start",
 	})
 end)
 
-config.initial_rows = 42
+config.initial_rows = 43
 config.initial_cols = 100
 
 --"tokyonight_night" --"Catppuccin Mocha"
