@@ -42,7 +42,7 @@ local process_icons = {
 	["node"] = wezterm.nerdfonts.dev_nodejs_small,
 	["dotnet"] = wezterm.nerdfonts.md_language_csharp,
 	["terminal"] = wezterm.nerdfonts.md_powershell,
-  ["editor"] = wezterm.nerdfonts.cod_code
+	["editor"] = wezterm.nerdfonts.cod_code,
 }
 
 -- This table will hold the configuration.
@@ -240,11 +240,6 @@ config.keys = {
 		mods = "LEADER|SHIFT",
 		action = act.SwitchWorkspaceRelative(1),
 	},
-
-	-- save/load/restore sessions
-	{ key = "S", mods = "LEADER|SHIFT", action = act({ EmitEvent = "save_state" }) },
-	{ key = "L", mods = "LEADER|SHIFT", action = act({ EmitEvent = "load_state" }) },
-	{ key = "R", mods = "LEADER|SHIFT", action = act({ EmitEvent = "restore_state" }) },
 
 	-- We can make separate keybindings for resizing panes
 	-- But Wezterm offers custom "mode" in the name of "KeyTable"
