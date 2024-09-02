@@ -36,7 +36,7 @@ opt.list = false
 -- ast = false
 
 opt.signcolumn = "yes"
-opt.updatetime = 20
+opt.updatetime = 300
 
 -- test feature
 opt.wrap = false -- No Wrap lines
