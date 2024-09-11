@@ -51,6 +51,9 @@ return {
     "rmagatti/auto-session",
     -- event = { { "VimLeavePre" } }, -- { "VimEnter", "VimLeavePre" },
     lazy = false,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
     config = function()
       require("auto-session").setup({
         log_level = vim.log.levels.ERROR,
@@ -62,7 +65,14 @@ return {
         -- "C:\\", "C:\\Users\\james"
         auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "$HOME" },
         auto_session_use_git_branch = false,
-        -- pre_save_cmds = { "Neotree close" },
+
+        bypass_save_filetypes = { "alpha", "dashboard" },
+
+        cwd_change_handling = true,
+
+        pre_cwd_changed_cmds = {
+          "tabdo NERDTreeClose",
+        },
       })
     end,
     keys = {

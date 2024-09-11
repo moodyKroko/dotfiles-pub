@@ -15,7 +15,19 @@ return {
         "gomodifytags",
         "impl",
         "json-lsp",
+        "css-lsp",
       })
     end,
   },
+
+  -- lsp servers
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        cssls = {},
+      }
+    }
+  }
 }
