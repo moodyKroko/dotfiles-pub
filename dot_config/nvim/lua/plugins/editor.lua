@@ -89,14 +89,14 @@ return {
   -- trouble
   {
     "folke/trouble.nvim",
-    keys = {
-      {
-        "<leader>cS",
-        "<cmd>Trouble lsp toggle focus=false<cr>",
-        desc = "LSP references/definitions/... (Trouble)",
+    opts = {
+      modes = {
+        lsp = {
+          win = { position = "bottom" },
+        },
       },
     },
-  },
+    },
 
   {
     "sindrets/diffview.nvim",
@@ -116,7 +116,7 @@ return {
   {
     "which-key.nvim",
     opts = {
-      defaults = {
+      spec = {
         ["<leader>dv"] = { name = "+diffview" },
       },
     },

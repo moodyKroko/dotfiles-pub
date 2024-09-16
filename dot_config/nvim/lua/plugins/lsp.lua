@@ -23,11 +23,22 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        cssls = {},
+    opts = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+      keys[#keys + 1] = {
+        "gr",
+        "<cmd>Trouble lsp_references toggle focus=true auto_jump=true<cr>",
+        mode = { "n" },
+        desc = "LSP References (Trouble)",
       }
-    }
-  }
+
+      keys[#keys + 1] = {
+        "gd",
+        "<cmd>Trouble lsp_definitions toggle focus=true auto_jump=true<cr>",
+        mode = { "n" },
+        desc = "LSP Definitions (Trouble)",
+      }
+    end,
+  },
 }

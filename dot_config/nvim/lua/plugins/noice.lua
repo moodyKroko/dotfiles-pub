@@ -2,6 +2,11 @@ return {
   {
     "folke/noice.nvim",
     lazy = true,
+    opts = {
+      cmdline = {
+        view = "cmdline"
+      }
+    }
     -- opts = function(_, opts)
     --   table.insert(opts.routes, {
     --     filter = {
