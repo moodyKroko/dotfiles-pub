@@ -46,6 +46,7 @@ return {
     end,
   },
 
+{{- if eq .chezmoi.os "windows" -}}
   -- auto sessions
   {
     "rmagatti/auto-session",
@@ -85,6 +86,7 @@ return {
       },
     },
   },
+{{- end -}}
 
   -- trouble
   {
