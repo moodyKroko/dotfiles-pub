@@ -1,0 +1,4 @@
+{{- if eq .chezmoi.os "windows" -}}
+{{- include ".bashrc_win" -}}
+{{- include ".bashrc_profile_win" -}}
+{{- end -}}
