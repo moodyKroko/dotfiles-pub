@@ -1,7 +1,6 @@
 # Load prompt config
-oh-my-posh init pwsh --config 'https://raw.githubusercontent.com/moodyKroko/dotfiles-pub/main/Documents/PowerShell/robbyrussel.omp.json' | Invoke-Expression
-#star
-#oh-my-posh init pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/star.omp.json' | Invoke-Expression
+$prompt_theme = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "robbyrussel.omp.json")
+oh-my-posh init pwsh --config $prompt_theme | Invoke-Expression
 
 ## Icons
 Import-Module -Name Terminal-Icons
