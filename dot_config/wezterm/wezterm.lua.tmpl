@@ -26,7 +26,7 @@ config.window_padding = {
 config.exit_behavior = "Close"
 config.debug_key_events = true
 
-{{- if eq .chezmoi.os "windows"}}
+{{- if eq .chezmoi.os "windows" -}}
 -- Spawn a powershell in login mode
 config.default_prog = { "pwsh.exe", "-NoLogo" }
 
@@ -103,7 +103,7 @@ end)
 
 config.initial_rows = 43
 config.initial_cols = 100
-{{- end}}
+{{- end -}}
 
 --"tokyonight_night" --"Catppuccin Mocha"
 --"Shaman (Gogh)" --"Aci (Gogh)"
@@ -144,7 +144,7 @@ config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 
-{{- if eq .chezmoi.os "windows"}}
+{{- if eq .chezmoi.os "windows" -}}
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local title = tab_title(tab)
 
@@ -170,7 +170,7 @@ end)
   config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 {{- else }}
   config.leader = { key = "w", mods = "ALT", timeout_milliseconds = 1000 }
-{{- end}}
+{{- end -}}
 
 config.keys = {
 	-- Send C-a when pressing C-a twice
@@ -194,7 +194,7 @@ config.keys = {
 		}),
 	},
 
-{{- if eq .chezmoi.os "windows"}}
+{{- if eq .chezmoi.os "windows" -}}
 	-- Pane keybindings
 	{
 		key = '"',
@@ -255,10 +255,11 @@ config.keys = {
 
 	-- Switch workspace relatively
 	{
+    key = "(",
 		mods = "LEADER|SHIFT",
-		key = "(",
 		action = act.SwitchWorkspaceRelative(-1),
 	},
+
 	{
 		key = ")",
 		mods = "LEADER|SHIFT",
@@ -293,27 +294,29 @@ config.keys = {
 			end),
 		}),
 	},
-
-  config.key_tables = {
-    resize_pane = {
-      { key = "h", action = act.AdjustPaneSize({ "Left", 5 }) },
-      { key = "j", action = act.AdjustPaneSize({ "Down", 5 }) },
-      { key = "k", action = act.AdjustPaneSize({ "Up", 5 }) },
-      { key = "l", action = act.AdjustPaneSize({ "Right", 5 }) },
-      { key = "Escape", action = "PopKeyTable" },
-      { key = "Enter", action = "PopKeyTable" },
-    },
-    move_tab = {
-      { key = "h", action = act.MoveTabRelative(-1) },
-      { key = "j", action = act.MoveTabRelative(-1) },
-      { key = "k", action = act.MoveTabRelative(1) },
-      { key = "l", action = act.MoveTabRelative(1) },
-      { key = "Escape", action = "PopKeyTable" },
-      { key = "Enter", action = "PopKeyTable" },
-    },
-  }
-{{- end}}
+{{- end -}}
 }
+
+{{- if eq .chezmoi.os "windows" -}}
+config.key_tables = {
+  resize_pane = {
+    { key = "h", action = act.AdjustPaneSize({ "Left", 5 }) },
+    { key = "j", action = act.AdjustPaneSize({ "Down", 5 }) },
+    { key = "k", action = act.AdjustPaneSize({ "Up", 5 }) },
+    { key = "l", action = act.AdjustPaneSize({ "Right", 5 }) },
+    { key = "Escape", action = "PopKeyTable" },
+    { key = "Enter", action = "PopKeyTable" },
+  },
+  move_tab = {
+    { key = "h", action = act.MoveTabRelative(-1) },
+    { key = "j", action = act.MoveTabRelative(-1) },
+    { key = "k", action = act.MoveTabRelative(1) },
+    { key = "l", action = act.MoveTabRelative(1) },
+    { key = "Escape", action = "PopKeyTable" },
+    { key = "Enter", action = "PopKeyTable" },
+  },
+}
+{{- end -}}
 
 -- and finally, return the configuration to wezterm
 return config
