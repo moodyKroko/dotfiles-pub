@@ -44,6 +44,7 @@ opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
 
+{{- if eq .chezmoi.os "windows" }}
 if os.getenv("os") == "Windows_NT" then
   -- terminal settings
   local powershell_opts = {
@@ -59,3 +60,4 @@ if os.getenv("os") == "Windows_NT" then
     vim.opt[option] = value
   end
 end
+{{- end }}
