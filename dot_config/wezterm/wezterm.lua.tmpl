@@ -297,7 +297,7 @@ config.keys = {
 {{- end -}}
 }
 
-{{- if eq .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows" }}
 config.key_tables = {
   resize_pane = {
     { key = "h", action = act.AdjustPaneSize({ "Left", 5 }) },
@@ -316,7 +316,7 @@ config.key_tables = {
     { key = "Enter", action = "PopKeyTable" },
   },
 }
-{{- end -}}
+{{- end }}
 
 -- and finally, return the configuration to wezterm
 return config
