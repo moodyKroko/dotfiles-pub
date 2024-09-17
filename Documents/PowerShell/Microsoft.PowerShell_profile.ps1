@@ -30,6 +30,12 @@ Set-Alias grep findstr
 Set-Alias g git
 Set-Alias l ls
 
+function Invoke-Chezmoi {
+  chezmoi $args
+}
+
+Set-Alias -Name dot -Value Invoke-Chezmoi
+
 function clone {
   param (
     $gitRepo
