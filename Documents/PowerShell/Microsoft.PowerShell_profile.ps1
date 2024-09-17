@@ -29,13 +29,15 @@ Set-Alias grep findstr
 Set-Alias g git
 Set-Alias l ls
 
-function Invoke-Chezmoi {
+function Invoke-Chezmoi
+{
   chezmoi $args
 }
 
 Set-Alias -Name dot -Value Invoke-Chezmoi
 
-function clone {
+function clone
+{
   param (
     $gitRepo
   )
@@ -43,15 +45,18 @@ function clone {
   git clone $gitRepo
 }
 
-function gs {
+function gs
+{
   git status
 }
 
-function gd {
+function gd
+{
   git diff
 }
 
-function which {
+function which
+{
   param (
     $appName
   )
@@ -78,48 +83,44 @@ function c
 #   Get-ChildItem -Force -File
 # }
 
-function ll {
+function ll
+{
   eza --color=always --long --git --no-filesize --icons=always --no-user --all --group-directories-first --sort name
 }
 
-function rm {
-  param (
-    $1
-  )
-  Remove-Item -Confirm $1
+function Invoke-Remove-Items
+{
+  Remove-Item $args
 }
+
+Set-Alias -Name rm -Value Invoke-Remove-Items -Confirm
 
 function xop
 {
   Start-Process .
 }
 
-function open {
+function open
+{
   Start-Process
 }
 
 function ..
 {
-    cd ..
+  Set-Location ..
 }
 
 # Edit powershell profile
 function pconf
 {
-  $shell_config = [System.IO.Path]::Combine($HOME, "Documents\PowerShell\Microsoft.PowerShell_profile.ps1")
+  $shell_config = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
   nvim $shell_config
 }
 
-## edit wezterm
-function wezconf {
-  $wezterm_config = [System.IO.Path]::Combine($HOME, ".wezterm.lua")
-  nvim $wezterm_config
-}
-
-# edit vim setting
+# edit neovim config
 function vconf
 {
-  $nvim_config = [System.IO.Path]::Combine($HOME, ".config\nvim\init.lua")
+  $nvim_config = [System.IO.Path]::Combine($HOME, ".config", "nvim", "init.lua")
   nvim $nvim_config
 }
 
@@ -130,7 +131,8 @@ function gconf
   nvim $git_conf
 }
 
-function LinkTo {
+function LinkTo
+{
   param (
     [Parameter(Position=0, Mandatory)][String] $linkType,
     [Parameter(Position=1, Mandatory)][String] $from,
