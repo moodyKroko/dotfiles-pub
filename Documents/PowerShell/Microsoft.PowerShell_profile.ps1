@@ -88,12 +88,12 @@ function ll
   eza --color=always --long --git --no-filesize --icons=always --no-user --all --group-directories-first --sort name
 }
 
-function Invoke-Remove-Items
+function Invoke-RM
 {
-  Remove-Item $args
+  Remove-Item $args -Confirm
 }
 
-Set-Alias -Name rm -Value Invoke-Remove-Items -Confirm
+Set-Alias -Name rm -Value Invoke-RM
 
 function xop
 {
