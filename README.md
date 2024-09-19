@@ -10,7 +10,7 @@
 - [Hack Nerd Font](https://www.nerdfonts.com/)(v3.0 or greater) - Fonts with icons and glyphs
 - [Rose-pine](https://github.com/rose-pine/neovim) - Editor theme
 
-### Shell setup (Ubuntu)
+### Shell setup (Ubuntu/Pop_Os!/Wsl)
 - [z.lua](https://github.com/skywind3000/z.lua) - Directory jumping written in lua
 - [Eza](https://github.com/eza-community/eza) - `ls` replacement
 - [fzf](https://github.com/PatrickF1/fzf.fish) - Interactive filtering
