@@ -1,6 +1,6 @@
 [user]
-	name = ${GIT_USER_NAME}
-	email = ${GIT_USER_EMAIL}
+	name = "{{ .name }}"
+	email = "{{ .email }}"
 [core]
   editor={{ .chezmoi.config.diff.command }}
 	excludesfile = ~/.gitignore_global
