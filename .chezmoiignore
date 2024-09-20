@@ -1,11 +1,11 @@
 README.md
 thumbnail.png
-{{ if eq .chezmoi.os "windows"}}
-.zshrc
-{{ else if eq .chezmoi.os "linux" }}
-Documents/**
-.bash_profile
-.bashrc
+{{- if ne .chezmoi.os "windows"}}
+Documents/PowerShell/
+.config/scoop/
 .ideavimrc
 .inputrc
+{{- else if ne .chezmoi.os "linux" }}
+.zshrc
+.zsh_profile
 {{- end}}
