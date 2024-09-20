@@ -1,0 +1,49 @@
+# make nvim default
+VIM="nvim"
+alias vim="nvim"
+alias edit='nvim'
+alias zconf="nvim ~/.zshrc"
+alias dot='chezmoi'
+
+# update ubuntu
+alias sapt='sudo apt'
+alias update='sudo apt update && sudo apt upgrade -y'
+
+# source .zshrc
+alias soz='source ~/.zshrc'
+
+# tune sudo and su
+alias root='sudo -i'
+
+# some more ls aliases
+alias l='ls -alF'
+alias la='ls -A'
+alias rm='rm -I --preserve-root'
+
+# create parent directory on demand
+alias md='mkdir -pv'
+
+# with confirmation
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+
+# copy with progress bar
+alias cpv='rsync -ah --info=progress2'
+
+# make nvim default
+alias bsconf='nvim ~/.bashrc'
+
+# shows all the path
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%"'
+alias nowtime=now
+
+# alias echopl='echo $PATH | tr : \\n'
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^ ' autosuggest-accept
+
+# Go
+export GOPATH=$HOME/go
+export PATH=/usr/local/go/bin:$GOPATH/bin:~/.local/bin:~/Scripts:$PATH
