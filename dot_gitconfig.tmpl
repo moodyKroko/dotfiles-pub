@@ -1,0 +1,51 @@
+[user]
+	name = ${GIT_USER_NAME}
+	email = ${GIT_USER_EMAIL}
+[core]
+  editor={{ .chezmoi.config.diff.command }}
+	excludesfile = ~/.gitignore_global
+	autocrlf = false
+  filemode = false
+  pager = less -FRSX
+[rerere]
+  enabled = true
+  autoupdate = true
+[push]
+  default = simple
+[color]
+  status = {{ .chezmoi.config.color }}
+  diff = {{ .chezmoi.config.color }}
+  branch = {{ .chezmoi.config.color }}
+  interactive = {{ .chezmoi.config.color }}
+  grep = {{ .chezmoi.config.color }}
+  ui = {{ .chezmoi.config.color }}
+  pager = true
+  filemode = false
+[submodule]
+	recurse = true
+	fetchJobs = 0
+[rebase]
+	autoStash = true
+[merge]
+  tool = {{ .chezmoi.config.diff.command }}
+[mergetool]
+  prompt = false
+  keepBackup = false
+  trustExitCode = false
+[mergetool "{{ .chezmoi.config.diff.command }}"]
+  cmd = "{{ .chezmoi.config.diff.command }} -d -c {{ .chezmoi.pathSeparator }}"wincmd l{{ .chezmoi.pathSeparator }}" -c {{ .chezmoi.pathSeparator }}"norm gg{{ .chezmoi.pathSeparator }}" -c {{ .chezmoi.pathSeparator }}"norm ]c{{ .chezmoi.pathSeparator }}" {{ .chezmoi.pathSeparator }}"$LOCAL{{ .chezmoi.pathSeparator }}" {{ .chezmoi.pathSeparator }}"$MERGED{{ .chezmoi.pathSeparator }}" {{ .chezmoi.pathSeparator }}"$REMOTE{{ .chezmoi.pathSeparator }}""
+[diff]
+  tool = {{ .chezmoi.config.diff.command }}
+[difftool]
+  prompt = false
+[difftool "{{ .chezmoi.config.diff.command }}"]
+  cmd = "{{ .chezmoi.config.diff.command }} -d {{ .chezmoi.pathSeparator }}"$LOCAL{{ .chezmoi.pathSeparator }}" {{ .chezmoi.pathSeparator }}"$REMOTE{{ .chezmoi.pathSeparator }}""
+[init]
+  defaultBranch = main
+[github]
+  user = moodyKroko
+[filter "lfs"]
+	clean = {{ .chezmoi.config.git.command }}-lfs clean -- %f
+	smudge = {{ .chezmoi.config.git.command }}-lfs smudge -- %f
+	required = true
+	process = {{ .chezmoi.config.git.command }}-lfs filter-process
