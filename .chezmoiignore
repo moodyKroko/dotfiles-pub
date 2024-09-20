@@ -1,10 +1,11 @@
 README.md
 thumbnail.png
 {{- if ne .chezmoi.os "windows"}}
-Documents/PowerShell/Microsoft.PowerShell_profile.ps1
-Documents/PowerShell/star.omp.json
-.bash_profile
-.bashrc
+Documents/PowerShell/
+.config/scoop/
 .ideavimrc
 .inputrc
+{{- else if ne .chezmoi.os "linux" }}
+.zshrc
+.zsh_profile
 {{- end}}
