@@ -1,8 +1,9 @@
 README.md
 thumbnail.png
 {{- if ne .chezmoi.os "windows"}}
-Documents/PowerShell/Microsoft.PowerShell_profile.ps1
-Documents/PowerShell/star.omp.json
+.zshrc
+{{ else if eq .chezmoi.os "linux" }}
+Documents/
 .bash_profile
 .bashrc
 .ideavimrc
