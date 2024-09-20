@@ -6,4 +6,7 @@ Documents/PowerShell/star.omp.json
 dot_config/scoop/
 .ideavimrc
 .inputrc
+{{- else if ne .chezmoi.os "linux" }}
+.zshrc
+.zsh_profile
 {{- end}}
