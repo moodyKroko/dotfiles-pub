@@ -44,10 +44,7 @@ return {
         "http",
       })
     end,
-  },
-
-{{- if eq .chezmoi.os "windows" -}}
-  -- auto sessions
+  },-- auto sessions
   {
     "rmagatti/auto-session",
     -- event = { { "VimLeavePre" } }, -- { "VimEnter", "VimLeavePre" },
@@ -85,10 +82,7 @@ return {
         desc = "Search for a session",
       },
     },
-  },
-{{- end -}}
-
-  -- trouble
+  },-- trouble
   {
     "folke/trouble.nvim",
     opts = {
