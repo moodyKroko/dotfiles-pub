@@ -1,9 +1,9 @@
 README.md
 thumbnail.png
-{{- if ne .chezmoi.os "windows"}}
+{{ if eq .chezmoi.os "windows"}}
 .zshrc
 {{ else if eq .chezmoi.os "linux" }}
-Documents/
+Documents/**
 .bash_profile
 .bashrc
 .ideavimrc
