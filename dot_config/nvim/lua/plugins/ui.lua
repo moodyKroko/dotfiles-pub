@@ -9,29 +9,29 @@ return {
 
 	{
 		"folke/noice.nvim",
-    opts = {
-      cmdline = {
-        view = "cmdline",
-      },
+		opts = {
+			cmdline = {
+				view = "cmdline",
+			},
 
-      views = {
-        popupmenu = {
-          relative = "editor",
-          position = {
-            row = "97%",
-            col = "2%",
-          },
-          border = {
-            style = "rounded",
-          }
-        }
-      },
+			views = {
+				popupmenu = {
+					relative = "editor",
+					position = {
+						row = "97%",
+						col = "2%",
+					},
+					border = {
+						style = "rounded",
+					},
+				},
+			},
 
-      presets = {
-        command_palette = false,
-        lsp_doc_border = true,
-      }
-    }
+			presets = {
+				command_palette = false,
+				lsp_doc_border = true,
+			},
+		},
 	},
 
 	-- status line
