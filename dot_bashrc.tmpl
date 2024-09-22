@@ -1,4 +1,6 @@
 {{ if eq .chezmoi.os "windows" }}
 {{ include ".bashrc_windows" }}
 {{ include ".bash_profile_windows" }}
+{{ else }}
+{{ include ".bashrc_linux"}}
 {{ end }}
