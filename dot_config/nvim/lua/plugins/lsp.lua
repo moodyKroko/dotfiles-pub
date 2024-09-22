@@ -41,6 +41,14 @@ return {
         desc = "Goto Definition (Trouble)",
         has = "definition"
       }
+
+      keys[#keys+1] = {
+        "<leader>cf",
+        mode = { "n", "v"},
+        function()
+          require("conform").format {async = true, lsp_fallback = true }
+        end,
+      }
     end,
   },
 }
