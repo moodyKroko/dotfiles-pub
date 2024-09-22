@@ -45,7 +45,7 @@ return {
       background_colour = "#56B6C2", --#a9ff68
     },
     config = function ()
-      require("notify-progress")
+      require("plugins.notify-progress")
     end
   },
 

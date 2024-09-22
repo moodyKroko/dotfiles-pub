@@ -1,5 +1,6 @@
 -- Utility functions shared between progress reports for LSP and DAP
 
+local notify = require("notify")
 local client_notifs = {}
 
 local function get_notif_data(client_id, token)
