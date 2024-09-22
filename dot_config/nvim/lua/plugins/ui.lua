@@ -33,6 +33,7 @@ return {
 			},
 		},
 	},
+
   -- Notifications system
   {
     "rcarriga/nvim-notify",
@@ -71,18 +72,6 @@ return {
 					{ LazyVim.lualine.pretty_path() },
 				},
 			},
-		},
-	},
-
-	-- Notifications system
-	{
-		"rcarriga/nvim-notify",
-		lazy = true,
-		opts = {
-			timeout = 3000,
-			stages = "static",
-			render = "default", -- "compact"
-			background_colour = "#56B6C2", --#a9ff68
 		},
 	},
 
