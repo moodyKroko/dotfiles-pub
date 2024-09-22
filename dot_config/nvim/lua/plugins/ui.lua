@@ -7,6 +7,16 @@ return {
     enabled = false,
   },
 
+  {
+    "folke/noice.nvim",
+    lazy = true,
+    opts = {
+      cmdline = {
+        view = "cmdline",
+      },
+    },
+  },
+
   -- status line
   {
     "nvim-lualine/lualine.nvim",
