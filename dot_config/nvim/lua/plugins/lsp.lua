@@ -31,13 +31,15 @@ return {
         "<cmd>Trouble lsp_references toggle focus=true auto_jump=true<cr>",
         mode = { "n" },
         desc = "LSP References (Trouble)",
+        has = "reference"
       }
 
       keys[#keys + 1] = {
         "gd",
         "<cmd>Trouble lsp_definitions toggle focus=true auto_jump=true<cr>",
         mode = { "n" },
-        desc = "LSP Definitions (Trouble)",
+        desc = "Goto Definition (Trouble)",
+        has = "definition"
       }
     end,
   },
