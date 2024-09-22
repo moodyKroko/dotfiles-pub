@@ -4,7 +4,7 @@
 [core]
   editor={{ .chezmoi.config.diff.command }}
 	excludesfile = ~/.gitignore_global
-{{ if .chezmoi.os "windows"}}
+{{ if eq .chezmoi.os "windows"}}
 	autocrlf = true
 {{ else }}
 	autocrlf = input
