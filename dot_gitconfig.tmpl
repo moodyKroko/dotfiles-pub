@@ -4,7 +4,11 @@
 [core]
   editor={{ .chezmoi.config.diff.command }}
 	excludesfile = ~/.gitignore_global
-	autocrlf = false
+{{ if .chezmoi.os "windows"}}
+	autocrlf = true
+{{ else }}
+	autocrlf = input
+{{ end }}
   filemode = false
   pager = less -FRSX
 [rerere]
