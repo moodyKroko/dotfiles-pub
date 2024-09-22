@@ -7,6 +7,6 @@ Documents/PowerShell
 .ideavimrc
 .inputrc
 {{- else if ne .chezmoi.os "linux" }}
-#.zshrc
-#.zsh_profile
+.zshrc
+.zsh_profile
 {{- end}}
