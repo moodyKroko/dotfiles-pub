@@ -9,40 +9,29 @@ return {
 
 	{
 		"folke/noice.nvim",
-		lazy = true,
-		opts = {
-			cmdline = {
-				view = "cmdline_popup",
-			},
-			views = {
-				cmdline_popup = {
-					position = {
-						row = "100%",
-					},
-					size = {
-						height = "auto",
-					},
-				},
-				popupmenu = {
-					relative = "editor",
-					position = {
-						row = 8,
-						col = "50%",
-					},
-					size = {
-						width = 60,
-						height = 10,
-					},
-					border = {
-						style = "rounded",
-						padding = { 0, 1 },
-					},
-					win_options = {
-						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-					},
-				},
-			},
-		},
+    opts = {
+      cmdline = {
+        view = "cmdline",
+      },
+
+      views = {
+        popupmenu = {
+          relative = "editor",
+          position = {
+            row = "97%",
+            col = "2%",
+          },
+          border = {
+            style = "rounded",
+          }
+        }
+      },
+
+      presets = {
+        command_palette = false,
+        lsp_doc_border = true,
+      }
+    }
 	},
 
 	-- status line

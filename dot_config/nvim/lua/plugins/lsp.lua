@@ -46,7 +46,7 @@ return {
 				"<leader>cf",
 				mode = { "n", "v" },
 				function()
-					require("conform").format({ async = true, lsp_fallback = true })
+					require("conform").format({ async = true, lsp_fallback = "fallback" })
 				end,
 				desc = "Conform format",
 			}
