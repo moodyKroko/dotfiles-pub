@@ -1,9 +1,14 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
+export PATH="/opt/nvim/:$HOME/.local/bin/scripts:$PATH"
+
 # make nvim default
 VIM="nvim"
 alias vim="nvim"
 alias edit='nvim'
 alias zconf="nvim ~/.zshrc"
 alias dot='chezmoi'
+alias i3c='nvim ~/.config/i3/config'
 
 # update ubuntu
 alias sapt='sudo apt'
