@@ -9,4 +9,10 @@ Documents/PowerShell
 {{- else if ne .chezmoi.os "linux" }}
 .zshrc
 .zsh_profile
+.config/i3
+.config/rofi
+.config/tmux
+.local/bin/scripts
+.tmux-cht-command
+.tmux-cht-languages
 {{- end}}
