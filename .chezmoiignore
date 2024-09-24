@@ -5,6 +5,8 @@ Documents/PowerShell
 .config/scoop
 .config/wezterm
 .ideavimrc
+.bashrc
+.bash_profile
 .inputrc
 {{- else if ne .chezmoi.os "linux" }}
 .zshrc
@@ -15,4 +17,5 @@ Documents/PowerShell
 .local/bin/scripts
 .tmux-cht-command
 .tmux-cht-languages
+.config/picom
 {{- end}}
