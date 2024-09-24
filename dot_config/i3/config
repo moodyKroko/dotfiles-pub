@@ -10,13 +10,24 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-exec --no-startup-id feh --bg-fill ~/Pictures/bg-wallpaper.jpg
+
+exec --no-startup-id picom
+exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/bg-wallpaper.jpg
+
+# disable my second monitor & setup my 75 as main 
+# enable this only when its desktop and not laptop
+exec --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 75 --primary
+exec --no-startup-id xrandr --output HDMI-0 --off
+
+# disable mouse acceleration 
+exec --no-startup-id xset m 0 0
 
 # remap caps lock to escape
 exec_always --no-startup-id setxkbmap -option caps:escape
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
+# make font 15 for laptop and 12 or 11 for desktop
 font pango:Hack Nerd Font 15
 
 # Set gruvbox colorscheme
@@ -244,6 +255,7 @@ bar {
 # bindsym $mod+Shift+Control+m move container to output primary
 # bindsym $mod+Shift+Control+s move container to output HDMI-1
 
+# enable this if laptop and not desktop
 bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/toggle_display.sh
 
 # Use pactl to adjust volume in PulseAudio.
