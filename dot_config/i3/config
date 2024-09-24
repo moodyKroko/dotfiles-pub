@@ -16,8 +16,9 @@ exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/bg-wallpaper.jpg
 
 # disable my second monitor & setup my 75 as main 
 # enable this only when its desktop and not laptop
-exec --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 75 --primary
-exec --no-startup-id xrandr --output HDMI-0 --off
+# exec --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 75 --primary
+exec --no-startup-id xrandr --output HDMI-0 --off --output DP-2 --auto --primary
+# xrandr --output "$INTERNAL" --off --output "$EXTERNAL" --auto --primary
 
 # disable mouse acceleration 
 exec --no-startup-id xset m 0 0
