@@ -41,7 +41,7 @@ return {
     config = function ()
       return {
         require("kanagawa").setup({
-          -- transparent = true,
+          transparent = true,
           functionStyle = { bold = true },
         })
       }
