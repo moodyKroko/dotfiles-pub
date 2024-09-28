@@ -19,9 +19,6 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = {
-        colorscheme = "one_monokai",
-      },
     },
 
     -- import any extras modules here

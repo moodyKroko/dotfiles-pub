@@ -3,6 +3,7 @@ return {
 	{
 		"cpea2506/one_monokai.nvim",
 		lazy = false,
+    enabled = false,
 		priority = 1000,
 		opts = function()
 			return {
@@ -31,5 +32,27 @@ return {
 				end,
 			}
 		end,
+	},
+
+	{
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function ()
+      return {
+        require("kanagawa").setup({
+          -- transparent = true,
+          functionStyle = { bold = true },
+        })
+      }
+    end
+  },
+
+	{
+		"LazyVim/LazyVim",
+		opts = {
+      -- colorscheme = "one_monokai",
+      colorscheme = "kanagawa",
+		},
 	},
 }
