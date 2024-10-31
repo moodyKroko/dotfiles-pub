@@ -3,7 +3,6 @@ thumbnail.png
 {{- if ne .chezmoi.os "windows"}}
 Documents/PowerShell
 .config/scoop
-.config/wezterm
 .ideavimrc
 .bashrc
 .bash_profile
