@@ -126,7 +126,11 @@ config.background = {
 
 config.line_height = 1.2 -- default font is 12
 config.font = wezterm.font_with_fallback({
-	"Hack",
+{{- if eq .chezmoi.os "windows" -}}
+  "Hack",
+{{- end -}}
+
+	"Hack Nerd Font",
 	"JetBrainsMono Nerd Font",
 	"Fira Code",
 })
