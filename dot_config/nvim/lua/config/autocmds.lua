@@ -4,32 +4,32 @@
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "set nopaste",
+	pattern = "*",
+	command = "set nopaste",
 })
 
 -- Disable the concealing in some file formats
 -- The default conceallevel is 3 in LazyVim
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "json", "jsonc", "markdown" },
-  callback = function()
-    vim.opt.conceallevel = 0
-  end,
+	pattern = { "json", "jsonc", "markdown" },
+	callback = function()
+		vim.opt.conceallevel = 0
+	end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    vim.opt.formatoptions:remove { "c", "r", "o" }
-  end,
-  desc = "Disable New Line Comment",
+	callback = function()
+		vim.opt.formatoptions:remove({ "c", "r", "o" })
+	end,
+	desc = "Disable New Line Comment",
 })
 
 -- Disable autoformat for files in list
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "lua" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
+	pattern = { "lua" },
+	callback = function()
+		vim.b.autoformat = false
+	end,
 })
 
 -- Show line diagnostics automatically in specific cursor position

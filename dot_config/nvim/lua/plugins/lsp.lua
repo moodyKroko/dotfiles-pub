@@ -28,7 +28,7 @@ return {
 
 			keys[#keys + 1] = {
 				"gr",
-				"<cmd>Trouble lsp_references toggle focus=true auto_jump=true<cr>",
+				"<cmd>Trouble lsp_references toggle focus=true auto_jump=true auto_close=true<cr>",
 				mode = { "n" },
 				desc = "LSP References (Trouble)",
 				has = "reference",

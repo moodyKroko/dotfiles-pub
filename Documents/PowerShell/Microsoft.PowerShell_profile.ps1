@@ -85,7 +85,7 @@ function c
 
 function ll
 {
-  eza --color=always --long --git --no-filesize --icons=always --no-user --all --group-directories-first --sort name
+  eza -la --git --no-filesize --no-quotes --classify=always --color=always --icons=always --no-symlinks --no-user --group-directories-first --sort name --ignore-glob="*.DAT|*.dat.*|*.DAT*|*.ini"
 }
 
 function Invoke-RM

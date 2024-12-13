@@ -11,23 +11,34 @@ return {
 		"folke/noice.nvim",
 		opts = {
 			cmdline = {
-				view = "cmdline",
+				-- enabled = true, -- disable to use default cmdline
+				view = "cmdline_input2",
 			},
 
 			views = {
+				cmdline_input2 = {
+					view = "cmdline_popup",
+					position = { row = "97%", col = "5%" },
+					border = { style = "rounded", padding = { 0, 1 } },
+				},
+
 				popupmenu = {
 					relative = "editor",
 					position = {
-						row = "97%",
+						row = "86%",
 						col = "2%",
 					},
 					border = {
 						style = "rounded",
 					},
+					win_options = {
+						winhighlight = "Normal:Normal,TelescopeBorder:Normal",
+					},
 				},
 			},
 
 			presets = {
+				bottom_search = false,
 				command_palette = false,
 				lsp_doc_border = true,
 			},
