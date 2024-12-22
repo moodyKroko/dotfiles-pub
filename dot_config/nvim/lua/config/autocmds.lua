@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Disable New Line Comment when comment on previous line
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
