@@ -33,7 +33,7 @@
 [merge]
   tool = {{ .chezmoi.config.diff.command }}
 [mergetool "winmerge"]
-  cmd = \"C:\Users\james\AppData\Local\Programs\WinMerge\WinMergeU.exe\" -e -u -fm -wl -dl \"Local\" -wr -dr \"Remote\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+  cmd = \"C:/Users/james/AppData/Local/Programs/WinMerge/WinMergeU.exe\" -e -u -fm -wl -dl \"Local\" -wr -dr \"Remote\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
   trustExitCode = true
 [mergetool]
   prompt = false
@@ -42,7 +42,7 @@
   tool = {{ .chezmoi.config.diff.command }}
 [difftool "winmerge"]
   prompt = false
-  cmd = \"C:\Users\james\AppData\Local\Programs\WinMerge\WinMergeU.exe\" -e -u -dl \"Old $LOCAL\" -dr \"New $REMOTE\" \"LOCAL\" \"REMOTE\"
+  cmd = \"C:/Users/james/AppData/Local/Programs/WinMerge/WinMergeU.exe\" -e -u -dl \"Old $LOCAL\" -dr \"New $REMOTE\" \"LOCAL\" \"REMOTE\"
 [init]
   defaultBranch = main
 [github]
