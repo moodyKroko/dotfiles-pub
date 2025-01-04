@@ -10,6 +10,12 @@ return {
         view = "cmdline_input2",
       },
 
+      lsp = {
+        hover = {
+          silent = true, -- set to true to not show a message if hover is not available
+        },
+      },
+
       views = {
         cmdline_input2 = {
           view = "cmdline_popup",
