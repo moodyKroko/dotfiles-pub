@@ -52,15 +52,21 @@ return {
 
           ---@param highlights tokyonight.Highlights
           ---@param colors ColorScheme
-          on_highlights = function (highlights, colors)
-            highlights.CmpPmenu = { bg = colors.none }
-            highlights.CmpSel = { fg = colors.fg, bg = '#292e42' }
-            highlights.CmpDoc = { bg = colors.none }
-          end
+          on_highlights = function(highlights, colors)
+            -- highlights.CmpPmenu = { bg = colors.none }
+            -- highlights.CmpSel = { fg = colors.fg, bg = '#292e42' }
+            -- highlights.CmpDoc = { bg = colors.none }
 
+            -- Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc
+            -- Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None
+            highlights.BlinkCmpMenu = { fg = colors.magenta, bg = colors.none }
+            highlights.BlinkCmpDoc = { fg = colors.purple, bg = colors.none }
+            highlights.BlinkCmpMenuBorder = { fg = colors.border_highlight, bg = colors.none }
+            highlights.BlinkCmpMenuSelection = { bg = colors.bg_highlight }
+          end,
         }),
       }
- end,
+    end,
   },
 
   {
