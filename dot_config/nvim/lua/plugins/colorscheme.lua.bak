@@ -74,12 +74,7 @@ return {
     opts = {
       flavour = "macchiato",
       transparent_background = true,
-      integrations = {
-        blink_cmp = true,
-        rainbow_delimiters = true,
-        lsp_trouble = true
-      }
-    },
+    }
   },
 
   {
