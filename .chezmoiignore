@@ -3,7 +3,8 @@ thumbnail.png
 *.bak
 */*.bak
 .config/*.bak
-.config/nvim/*.bak
+.config/nvim/lua/config/*.bak
+.config/nvim/lua/plugins/*.bak
 {{- if ne .chezmoi.os "windows"}}
 Documents/PowerShell
 .config/scoop
