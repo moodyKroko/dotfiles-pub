@@ -70,19 +70,10 @@ return {
   },
 
   {
-    "catppuccin",
-    opts = {
-      flavour = "macchiato",
-      transparent_background = true,
-    }
-  },
-
-  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "one_monokai",
-      -- colorscheme = "tokyonight",
-      colorscheme = "catppuccin",
+      colorscheme = "tokyonight",
     },
   },
 }

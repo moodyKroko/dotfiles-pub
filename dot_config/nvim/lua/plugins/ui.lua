@@ -52,7 +52,9 @@ return {
     -- enabled = false,
     opts = {
       options = {
-        theme = "papercolor_light",
+        theme = "ayu_dark", --"iceberg_dark",
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
       },
       sections = {
         lualine_c = {
