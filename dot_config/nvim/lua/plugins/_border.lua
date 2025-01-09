@@ -2,25 +2,6 @@
 local BORDER_STYLE = "rounded"
 
 return {
-  -- completion border
-  {
-    "nvim-cmp",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        window = {
-          completion = {
-            border = BORDER_STYLE,
-            winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
-          },
-          documentation = {
-            border = BORDER_STYLE,
-            winhighlight = "Normal:CmpDoc",
-          },
-        },
-      })
-    end,
-  },
-
   -- lazyvim.plugins.editor border
   {
     "which-key.nvim",
