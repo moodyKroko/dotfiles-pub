@@ -1,23 +1,29 @@
 return {
-  -- Use <tab> for completion and snippets (supertab)
-  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
-  -- disabled packages
-
-  -- tools
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
+  -- maybe add stevearc/quicker.nvim
 
   {
     "saghen/blink.cmp",
     opts = {
       completion = {
         menu = {
+          min_width = 20,
           border = "rounded",
+          draw = {
+            components = {
+              source = {
+                text = function(ctx)
+                  local map = {
+                    ["lsp"] = "[?]",
+                    ["path"] = "[??]",
+                    ["snippets"] = "[?]",
+                  }
+                  return map[ctx.item.source_id]
+                end,
+              },
+            },
+          },
         },
+
         documentation = {
           window = {
             border = "rounded",
@@ -28,6 +34,38 @@ return {
       signature = {
         window = {
           border = "rounded",
+        },
+      },
+
+      appearance = {
+        kind_icons = {
+          Snippet = "?",
+        },
+      },
+
+      sources = {
+        min_keyword_length = function (ctx)
+          return ctx.trigger.kind == "trigger_character" and 0 or 3
+        end
+      },
+
+      keymap = {
+        preset = "enter",
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return require("blink.cmp").select_next()
+            end
+          end,
+          "snippet_forward",
+          "fallback",
+        },
+        ["<S-Tab>"] = {
+          "select_prev",
+          "snippet_forward",
+          "fallback",
         },
       },
     },
