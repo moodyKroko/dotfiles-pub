@@ -1,126 +1,73 @@
 return {
-  -- maybe add stevearc/quicker.nvim
+	-- maybe add stevearc/quicker.nvim
 
-  {
-    "saghen/blink.cmp",
-    opts = {
-      completion = {
-        menu = {
-          min_width = 20,
-          border = "rounded",
-          draw = {
-            components = {
-              source = {
-                text = function(ctx)
-                  local map = {
-                    ["lsp"] = "[?]",
-                    ["path"] = "[??]",
-                    ["snippets"] = "[?]",
-                  }
-                  return map[ctx.item.source_id]
-                end,
-              },
-            },
-          },
-        },
+	{
+		"saghen/blink.cmp",
+		opts = {
+			completion = {
+				menu = {
+					min_width = 20,
+					border = "rounded",
+					draw = {
+						components = {
+							source = {
+								text = function(ctx)
+									local map = {
+										["lsp"] = "[]",
+										["path"] = "[󰉋]",
+										["snippets"] = "[]",
+									}
+									return map[ctx.item.source_id]
+								end,
+							},
+						},
+					},
+				},
 
-        documentation = {
-          window = {
-            border = "rounded",
-          },
-        },
-      },
+				documentation = {
+					window = {
+						border = "rounded",
+					},
+				},
+			},
 
-      signature = {
-        window = {
-          border = "rounded",
-        },
-      },
+			signature = {
+				window = {
+					border = "rounded",
+				},
+			},
 
-      appearance = {
-        kind_icons = {
-          Snippet = "?",
-        },
-      },
+			appearance = {
+				kind_icons = {
+					Snippet = "",
+				},
+			},
 
-      sources = {
-        min_keyword_length = function (ctx)
-          return ctx.trigger.kind == "trigger_character" and 0 or 3
-        end
-      },
+			sources = {
+				min_keyword_length = function(ctx)
+					return ctx.trigger.kind == "trigger_character" and 0 or 3
+				end,
+			},
 
-      keymap = {
-        preset = "enter",
-        ["<Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return require("blink.cmp").select_next()
-            end
-          end,
-          "snippet_forward",
-          "fallback",
-        },
-        ["<S-Tab>"] = {
-          "select_prev",
-          "snippet_forward",
-          "fallback",
-        },
-      },
-    },
-  },
-
-  -- then: setup supertab in cmp
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     local cmp = require("cmp")
-  --     local luasnip = require("luasnip")
-  --
-  --     opts.preselect = cmp.PreselectMode.Item
-  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
-  --       ["<CR>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           if luasnip.expandable() then
-  --             luasnip.expand()
-  --           else
-  --             cmp.confirm({
-  --               select = true,
-  --             })
-  --           end
-  --         else
-  --           fallback()
-  --         end
-  --       end),
-  --       ["<Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           cmp.select_next_item()
-  --         elseif vim.snippet.active({ direction = 1 }) then
-  --           vim.schedule(function()
-  --             vim.snippet.jump(1)
-  --           end)
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --       ["<S-Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           cmp.select_prev_item()
-  --         elseif vim.snippet.active({ direction = -1 }) then
-  --           vim.schedule(function()
-  --             vim.snippet.jump(-1)
-  --           end)
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --     })
-  --
-  --     -- opts.experimental = {
-  --     --   ghost_text = false,
-  --     -- }
-  --   end,
-  -- },
+			keymap = {
+				preset = "enter",
+				["<Tab>"] = {
+					function(cmp)
+						if cmp.snippet_active() then
+							return cmp.accept()
+						else
+							return require("blink.cmp").select_next()
+						end
+					end,
+					"snippet_forward",
+					"fallback",
+				},
+				["<S-Tab>"] = {
+					"select_prev",
+					"snippet_forward",
+					"fallback",
+				},
+			},
+		},
+	},
 }
