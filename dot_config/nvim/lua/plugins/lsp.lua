@@ -18,11 +18,6 @@ return {
 				"css-lsp",
 			},
 		},
-    config = function (_, opts)
-      require("mason").setup(vim.tbl_deep_extend("force", opts, {
-        npm = "bun",
-      }))
-    end
 	},
 
 	-- lsp servers
