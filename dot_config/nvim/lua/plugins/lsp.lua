@@ -3,7 +3,6 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			npm = "bun", -- Use bun for npm packages
 			ensure_installed = {
 				"shellcheck",
 				-- "luacheck",
@@ -19,6 +18,11 @@ return {
 				"css-lsp",
 			},
 		},
+    config = function (_, opts)
+      require("mason").setup(vim.tbl_deep_extend("force", opts, {
+        npm = "bun",
+      }))
+    end
 	},
 
 	-- lsp servers
