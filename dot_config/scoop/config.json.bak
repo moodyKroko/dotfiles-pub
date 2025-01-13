@@ -1,0 +1,9 @@
+{
+  "last_update": "2024-12-13T19:20:19.3229405+00:00",
+  "alias": {
+    "rm": "scoop-rm",
+    "upgrade": "scoop-upgrade"
+  },
+  "scoop_branch": "master",
+  "scoop_repo": "https://github.com/ScoopInstaller/Scoop"
+}
