@@ -3,6 +3,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
+      opts.npm = "bun" -- Use bun for npm packages
 			vim.list_extend(opts.ensure_installed, {
 				"shellcheck",
 				-- "luacheck",
@@ -24,10 +25,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = function()
-      server = {
-        cmd = { "bun", "run", "typescript-language-server", "--stdio" },
-      }
-
 			local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
 			keys[#keys + 1] = {
