@@ -2,9 +2,9 @@ return {
 	-- tools
 	{
 		"williamboman/mason.nvim",
-		opts = function(_, opts)
-      opts.npm = "bun" -- Use bun for npm packages
-			vim.list_extend(opts.ensure_installed, {
+		opts = {
+			npm = "bun", -- Use bun for npm packages
+			ensure_installed = {
 				"shellcheck",
 				-- "luacheck",
 				-- "tailwindcss-language-server",
@@ -17,8 +17,8 @@ return {
 				"impl",
 				"json-lsp",
 				"css-lsp",
-			})
-		end,
+			},
+		},
 	},
 
 	-- lsp servers
