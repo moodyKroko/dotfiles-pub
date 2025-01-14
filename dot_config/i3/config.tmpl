@@ -13,8 +13,8 @@ exec --no-startup-id xrandr --output HDMI-0 --off --output DP-2 --auto --primary
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/bg-wallpaper.jpg
 
 # status bar
-#exec_always killall polybar
-#exec_always --no-startup-id polybar moody
+exec_always killall polybar
+exec_always --no-startup-id polybar moody
 
 # disable mouse acceleration 
 exec --no-startup-id xset m 0 0
