@@ -5,7 +5,7 @@
 
 set $mod Mod4
 
-exec --no-startup-id picom
+exec --no-startup-id picom --experimental-backends -b
 {{ if eq .chezmoi.hostname "desktop" }}
 # enable this only when its linux
 exec --no-startup-id xrandr --output HDMI-0 --off --output DP-2 --auto --primary
@@ -55,6 +55,10 @@ for_window [class="discord"] floating enable
 
 # Fibonacci layout
 for_window [class=".*"] split toggle
+
+# add gaps
+gaps inner 5px
+gaps outer 5px
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
