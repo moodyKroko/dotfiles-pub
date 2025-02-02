@@ -28,11 +28,7 @@ return {
   -- auto sessions
   {
     "rmagatti/auto-session",
-    -- event = { { "VimLeavePre" } }, -- { "VimEnter", "VimLeavePre" },
     lazy = false,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
     config = function()
       require("auto-session").setup({
         log_level = vim.log.levels.ERROR,
@@ -56,11 +52,10 @@ return {
     end,
     keys = {
       {
-        "<leader>fs",
-        function()
-          require("auto-session.session-lens").search_session()
-        end,
-        desc = "Search for a session",
+        "<leader>fs", '<cmd>SessionSearch<CR>', desc = "Search for a session",
+      },
+      {
+        "<leader>fsv", '<cmd>SessionSave<CR>', desc = "Save session",
       },
     },
   },
