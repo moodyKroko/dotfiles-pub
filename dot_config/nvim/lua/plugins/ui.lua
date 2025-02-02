@@ -140,6 +140,11 @@ return {
     opts = {
       scroll = { enabled = false },
       indent = { enabled = false },
+      picker = {
+        matcher = {
+          frecency = true,
+        },
+      },
       dashboard = {
         preset = {
           header = [[
