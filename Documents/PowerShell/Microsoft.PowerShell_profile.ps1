@@ -29,6 +29,11 @@ Set-Alias grep findstr
 Set-Alias g git
 Set-Alias l ls
 
+function cpcb
+{
+    Set-Clipboard
+}
+
 function Invoke-Chezmoi
 {
   chezmoi $args
