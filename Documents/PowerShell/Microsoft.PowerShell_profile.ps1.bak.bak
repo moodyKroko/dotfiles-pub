@@ -1,5 +1,3 @@
-#$PSModuleAutoLoadingPreference = 'None'
-
 # Load prompt config
 $prompt_theme = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "robbyrussel.omp.json")
 oh-my-posh init pwsh --config $prompt_theme | Invoke-Expression
