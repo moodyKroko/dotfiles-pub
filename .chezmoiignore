@@ -1,8 +1,8 @@
 README.md
 thumbnail.png
 *.bak
-*/*.bak
-.config/*.bak
+*/**.bak
+.config/**/*.bak
 .config/nvim/lua/config/*.bak
 .config/nvim/lua/plugins/*.bak
 {{- if ne .chezmoi.os "windows"}}
