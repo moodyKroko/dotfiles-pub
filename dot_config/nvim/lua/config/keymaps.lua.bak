@@ -21,9 +21,6 @@ keymap.set("n", "<leader>Y", [["+Y]])
 
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- Move out of brackets and quotes
--- Alt + Shift + a 
-
 -- keymap.set("n", "x", '"_x')
 -- keymap.set("n", "<Leader>p", '"0p')
 -- keymap.set("n", "<Leader>P", '"0P')
