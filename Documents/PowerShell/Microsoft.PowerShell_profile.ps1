@@ -26,6 +26,7 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist '
 
 # Remove and set aliases - grouped for better performance
 Remove-Item alias:rm -ErrorAction SilentlyContinue
+Remove-Item alias:man -ErrorAction SilentlyContinue
 
 $aliasMap = @{
     'scp' = 'scoop'
@@ -51,6 +52,7 @@ $functions = @{
     'dot' = { chezmoi @args } # doesnt work
     'clone' = { param($gitRepo) git clone $gitRepo }
     'which' = { param($appName) scoop which $appName }
+    'man' = { help -showWindow @args }
     'Invoke-RM' = { Remove-Item @args -Confirm }
     'tig' = { & 'C:\Program Files\Git\usr\bin\tig.exe' }
     'pconf' = { nvim $script:path.PowerShell }

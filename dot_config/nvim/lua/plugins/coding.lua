@@ -43,11 +43,11 @@ return {
 				},
 			},
 
-			sources = {
-				min_keyword_length = function(ctx)
-					return ctx.trigger.kind == "trigger_character" and 0 or 3
-				end,
-			},
+			-- sources = {
+			-- 	min_keyword_length = function(ctx)
+			-- 		return ctx.trigger.kind == "trigger_character" and 0 or 2
+			-- 	end,
+			-- },
 
 			keymap = {
 				preset = "enter",

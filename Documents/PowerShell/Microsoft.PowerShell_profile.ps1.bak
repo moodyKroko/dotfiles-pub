@@ -1,177 +1,74 @@
-#$PSModuleAutoLoadingPreference = 'None'
+# disable progress bars globally to speed up module imports
+$ProgressPreference = 'SilentlyContinue'
 
-# Load prompt config
-$prompt_theme = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "robbyrussel.omp.json")
-oh-my-posh init pwsh --config $prompt_theme | Invoke-Expression
+$script:path = @{
+    OhMyPosh = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "robbyrussel.omp.json")
+    PowerShell = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
+    Neovim = [System.IO.Path]::Combine($HOME, ".config", "nvim", "init.lua")
+    Git = [System.IO.Path]::Combine($HOME, ".gitconfig")
+}
 
-## Icons
+# Initialize oh-my-posh
+oh-my-posh init pwsh --config $script:path.OhMyPosh | Invoke-Expression
+
+# Import modules
 Import-Module -Name Terminal-Icons
-
-## PSRreadLine
 Import-Module PSReadLine
+Import-Module PSFzf
+
+# Configure PSReadLine after import
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
 Set-PSReadLineOption -PredictionSource History
-#Set-PSReadLineOption -PredictionViewStyle ListView
-#Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
-# Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-# Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Chord Tab -Function AcceptSuggestion
-## Fzf (fuzzy file finder)
-Import-Module PSFzf
+
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChfordReverseHist 'Ctrl+r'
 
-# Undo some alias
-Remove-Item alias:rm
+# Remove and set aliases - grouped for better performance
+Remove-Item alias:rm -ErrorAction SilentlyContinue
 
-# Alias
-Set-Alias scp scoop
-Set-Alias vim nvim
-Set-Alias grep findstr
-Set-Alias g git
-Set-Alias l ls
+$aliasMap = @{
+    'scp' = 'scoop'
+    'vim' = 'nvim'
+    'grep' = 'findstr'
+    'g' = 'git'
+    'l' = 'ls'
+    #'dot' = 'Invoke-Chezmoi'
+    'rm' = 'Invoke-RM'
+}
+$aliasMap.GetEnumerator() | ForEach-Object { Set-Alias -Name $_.Key -Value $_.Value }
 
-function cpcb
-{
-    Set-Clipboard
+# Optimize function definitions by using a hashtable
+$functions = @{
+    'cpcb' = { Set-Clipboard }
+    'c' = { Clear-Host }
+    'gs' = { git status }
+    'gd' = { git diff }
+    #'..' = { cd .. } # doesnt work
+    'xop' = { Start-Process . }
+    'open' = { Start-Process }
+    'll' = { eza -la --git --no-filesize --no-quotes --classify=always --color=always --icons=always --no-symlinks --no-user --group-directories-first --sort name --ignore-glob="*.DAT|*.dat.*|*.DAT*|*.ini" }
+    'dot' = { chezmoi @args } # doesnt work
+    'clone' = { param($gitRepo) git clone $gitRepo }
+    'which' = { param($appName) scoop which $appName }
+    'Invoke-RM' = { Remove-Item @args -Confirm }
+    'tig' = { & 'C:\Program Files\Git\usr\bin\tig.exe' }
+    'pconf' = { nvim $script:path.PowerShell }
+    'vconf' = { nvim $script:path.Neovim }
+    'gconf' = { nvim $script:path.Git }
 }
 
-function Invoke-Chezmoi
-{
-  chezmoi $args
+# Register functions efficiently
+$functions.GetEnumerator() | ForEach-Object {
+    $name = $_.Key
+    $value = $_.Value
+    
+    if (-not (Test-Path Function:$name)) {
+        Set-Item -Path "Function:\$name" -Value $value
+    }
 }
 
-Set-Alias -Name dot -Value Invoke-Chezmoi
-
-function clone
+function .. 
 {
-  param (
-    $gitRepo
-  )
-
-  git clone $gitRepo
-}
-
-function gs
-{
-  git status
-}
-
-function gd
-{
-  git diff
-}
-
-function which
-{
-  param (
-    $appName
-  )
-  scoop which $appName
-}
-
-function tig
-{
-  'C:\Program Files\Git\usr\bin\tig.exe'
-}
-
-#function less
-#{
-#  'C:\Program Files\Git\usr\bin\less.exe'
-#}
-
-function c
-{
-  Clear-Host
-}
-
-# function ll
-# {
-#   Get-ChildItem -Force -File
-# }
-
-function ll
-{
-  eza -la --git --no-filesize --no-quotes --classify=always --color=always --icons=always --no-symlinks --no-user --group-directories-first --sort name --ignore-glob="*.DAT|*.dat.*|*.DAT*|*.ini"
-}
-
-function Invoke-RM
-{
-  Remove-Item $args -Confirm
-}
-
-Set-Alias -Name rm -Value Invoke-RM
-
-function xop
-{
-  Start-Process .
-}
-
-function open
-{
-  Start-Process
-}
-
-function ..
-{
-  Set-Location ..
-}
-
-# Edit powershell profile
-function pconf
-{
-  $shell_config = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
-  nvim $shell_config
-}
-
-# edit neovim config
-function vconf
-{
-  $nvim_config = [System.IO.Path]::Combine($HOME, ".config", "nvim", "init.lua")
-  nvim $nvim_config
-}
-
-# edit git config
-function gconf
-{
-  $git_conf = [System.IO.Path]::Combine($HOME, ".gitconfig")
-  nvim $git_conf
-}
-
-function LinkTo
-{
-  param (
-    [Parameter(Position=0, Mandatory)][String] $linkType,
-    [Parameter(Position=1, Mandatory)][String] $from,
-    [Parameter(Position=2, Mandatory)][String] $target
-  )
-  # TODO: implement the command depending on the type of link
-  # New-Item -ItemType $linkType -Path $from -Target $target
-
-  # link types
-  # HardLink
-  # SymbolicLink
-  # Junction
-
-}
-
-function Compare-Checksum
-{
-  Param (
-    [Parameter(Position=0, Mandatory)][String] $FileHashDir,
-    [Parameter(Position=1, Mandatory)][String] $CheckHashDir,
-    [Parameter(Position=2)][String] $Algorithm = "SHA256"
-  )
-
-  [string] $fileHash = (Get-FileHash $FileHashDir -Algorithm $Algorithm).Hash
-  [string] $checkHash = Get-Content $CheckHashDir
-
-  [switch] $result = $fileHash -eq $checkHash
-
-  if (-not $result)
-  {
-    return Write-Host $result -ForegroundColor Red
-  }
-
-  return Write-Host $result -ForegroundColor Green
+    cd ..
 }
