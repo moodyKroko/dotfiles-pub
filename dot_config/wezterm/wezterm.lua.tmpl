@@ -3,6 +3,8 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local act = wezterm.action
 
+local projects = require 'projects'
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -12,10 +14,7 @@ local dimmer = { brightness = 0.04 }
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
-
+config = wezterm.config_builder()
 config.exit_behavior = "Close"
 -- config.debug_key_events = true-- Spawn a powershell in login mode
 config.default_prog = { "pwsh.exe", "-NoLogo" }
@@ -51,7 +50,7 @@ end)
 
 config.initial_rows = 43
 config.initial_cols = 100
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Catppuccin Mocha (Gogh)"
 config.colors = { cursor_fg = "black" }
 config.bold_brightens_ansi_colors = true
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -158,6 +157,12 @@ config.keys = {
 
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
+
+  {
+    key = 's',
+    mods = "LEADER|ALT",
+    action = projects.choose_project(),
+  },
 
 	-- show sessions switcher
 	{
