@@ -55,6 +55,7 @@ $functions = @{
     'man' = { help -showWindow @args }
     'Invoke-RM' = { Remove-Item @args -Confirm }
     'tig' = { & 'C:\Program Files\Git\usr\bin\tig.exe' }
+    'omp-up' = { winget upgrade JanDeDobbeleer.OhMyPosh -s winget }
     'pconf' = { nvim $script:path.PowerShell }
     'vconf' = { nvim $script:path.Neovim }
     'gconf' = { nvim $script:path.Git }

@@ -8,8 +8,7 @@ $script:path = @{
     Git = [System.IO.Path]::Combine($HOME, ".gitconfig")
 }
 
-# Initialize oh-my-posh
-oh-my-posh init pwsh --config $script:path.OhMyPosh | Invoke-Expression
+$env:EDITOR = "notepad++"
 
 # Import modules
 Import-Module -Name Terminal-Icons
@@ -45,7 +44,7 @@ $functions = @{
     'c' = { Clear-Host }
     'gs' = { git status }
     'gd' = { git diff }
-    #'..' = { cd .. } # doesnt work
+    'refresh' = { . $PROFILE }
     'xop' = { Start-Process . }
     'open' = { Start-Process }
     'll' = { eza -la --git --no-filesize --no-quotes --classify=always --color=always --icons=always --no-symlinks --no-user --group-directories-first --sort name --ignore-glob="*.DAT|*.dat.*|*.DAT*|*.ini" }
@@ -55,6 +54,7 @@ $functions = @{
     'man' = { help -showWindow @args }
     'Invoke-RM' = { Remove-Item @args -Confirm }
     'tig' = { & 'C:\Program Files\Git\usr\bin\tig.exe' }
+    'npp' = { & 'C:\Program Files\Notepad++\notepad++.exe'}
     'omp-up' = { winget upgrade JanDeDobbeleer.OhMyPosh -s winget }
     'pconf' = { nvim $script:path.PowerShell }
     'vconf' = { nvim $script:path.Neovim }
@@ -67,11 +67,11 @@ $functions.GetEnumerator() | ForEach-Object {
     $value = $_.Value
     
     if (-not (Test-Path Function:$name)) {
-        Set-Item -Path "Function:\$name" -Value $value
+        Set-Item -Path "function:\$name" -Value $value
     }
 }
 
-function .. 
-{
-    cd ..
-}
+function .. { cd .. }
+
+# Always keep this as the last line
+oh-my-posh init pwsh --config $script:path.OhMyPosh | Invoke-Expression
