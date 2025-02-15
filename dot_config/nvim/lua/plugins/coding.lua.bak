@@ -5,6 +5,11 @@ return {
 		"saghen/blink.cmp",
 		opts = {
 			completion = {
+        list = {
+          selection = {
+            auto_insert = true,
+          }
+        },
 				menu = {
 					min_width = 20,
 					border = "rounded",
