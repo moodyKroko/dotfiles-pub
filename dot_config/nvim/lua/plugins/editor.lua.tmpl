@@ -24,7 +24,7 @@ return {
           },
       },
   },
-{{ if eq .chezmoi.os "windows" }}
+
   -- auto sessions
   {
     "rmagatti/auto-session",
@@ -59,7 +59,7 @@ return {
       },
     },
   },
-{{ end }}
+
   -- trouble
   {
     "folke/trouble.nvim",
@@ -78,6 +78,27 @@ return {
       preset = "classic",
       spec = {
         ["<leader>dv"] = { name = "+diffview" },
+      },
+    },
+  },
+
+{
+    "sindrets/diffview.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+
+    keys = {
+      {
+        "dv",
+        function()
+          if next(require("diffview.lib").views) == nil then
+            vim.cmd("DiffviewOpen")
+          else
+            vim.cmd("DiffviewClose")
+          end
+        end,
+        desc = "Toggle Diffview window",
       },
     },
   },

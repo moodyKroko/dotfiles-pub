@@ -1,0 +1,57 @@
+[user]
+	name = "moodyKroko"
+	email = "59341541+moodyKroko@users.noreply.github.com"
+[core]
+  editor=nvim
+	excludesfile = ~/.gitignore_global
+	autocrlf = true
+  filemode = false
+  pager = less -FRSX
+[rerere]
+  enabled = true
+  autoupdate = true
+[push]
+  default = simple
+[color]
+  interactive = auto
+  grep = auto
+  ui = auto
+  pager = true
+  filemode = false
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[submodule]
+	recurse = true
+	fetchJobs = 0
+[rebase]
+	autoStash = true
+[merge]
+  trustExitCode = true
+  prompt = false
+  keepBackup = false
+[diff]
+  prompt = false
+[init]
+  defaultBranch = main
+[github]
+  user = moodyKroko
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[alias]
+  mergetool = "!nvim -c DiffviewOpen"
+  difftool = "!nvim -c DiffviewOpen"

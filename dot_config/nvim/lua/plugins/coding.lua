@@ -22,7 +22,10 @@ return {
       completion = {
         -- required for supertab and autocomplete selection
         trigger = {
-          show_in_snippet = false,
+          -- show_in_snippet = false,
+          -- enable for some lsp to function properly
+          -- e.g scala
+          show_in_snippet = true,
         },
         menu = {
           min_width = 20,
