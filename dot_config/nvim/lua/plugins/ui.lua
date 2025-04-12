@@ -211,6 +211,11 @@ return {
         matcher = {
           frecency = true,
         },
+        sources = {
+          explorer = {
+            hidden = true,
+          },
+        },
       },
       dashboard = {
         preset = {

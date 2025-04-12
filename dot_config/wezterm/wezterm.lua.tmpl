@@ -22,6 +22,7 @@ end)
 config = wezterm.config_builder()
 config.exit_behavior = "Close"
 config.default_prog = { "pwsh.exe", "-NoLogo" }
+-- config.default_prog = { "pwsh.exe" }
 
 table.insert(launch_menu, {
 	label = "Wsl",
@@ -101,6 +102,33 @@ config.keys = {
 			},
 		}),
 	}, -- Pane keybindings
+
+	-- open lazygit on current path
+	{
+		key = "g",
+		mods = "LEADER",
+		action = act.SplitPane({
+			direction = "Down",
+			top_level = false,
+			size = { Percent = 85 },
+			command = {
+				args = { "lazygit" },
+			},
+		}),
+	},
+	-- {
+	-- 	key = "g",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action_callback(function(window, pane)
+	-- 		window:perform_action(
+	-- 			act.SpawnCommandInNewWindow({
+	-- 				args = { "lazygit" },
+	-- 			}),
+	-- 			pane
+	-- 		)
+	-- 	end),
+	-- },
+
 	{
 		key = '"',
 		mods = "LEADER|SHIFT",
