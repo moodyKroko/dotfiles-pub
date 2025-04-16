@@ -30,14 +30,6 @@ return {
 			"mfussenegger/nvim-dap-python",
 		},
 	},
-	{
-		"leoluz/nvim-dap-go",
-		ft = "go", -- Load only for Go files
-	},
-	{
-		"mfussenegger/nvim-dap-python",
-		ft = "python", -- Load only for Python files
-	},
 
 	-- auto sessions
 	{
