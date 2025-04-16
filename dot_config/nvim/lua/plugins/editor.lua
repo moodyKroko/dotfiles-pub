@@ -24,28 +24,19 @@ return {
 		ft = { "go", "python" }, -- Load only for Go and Python files
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
-			-- virtual text for the debugger
-			{
-				"theHamsta/nvim-dap-virtual-text",
-				opts = {},
-			},
+			"theHamsta/nvim-dap-virtual-text",
+			-- Language-specific debug adapters
+			"leoluz/nvim-dap-go",
+			"mfussenegger/nvim-dap-python",
 		},
 	},
 	{
 		"leoluz/nvim-dap-go",
 		ft = "go", -- Load only for Go files
-		dependencies = "mfussenegger/nvim-dap",
-		config = function()
-			require("dap-go").setup()
-		end,
 	},
 	{
 		"mfussenegger/nvim-dap-python",
 		ft = "python", -- Load only for Python files
-		dependencies = "mfussenegger/nvim-dap",
-		config = function()
-			require("dap-python").setup("python")
-		end,
 	},
 
 	-- auto sessions
