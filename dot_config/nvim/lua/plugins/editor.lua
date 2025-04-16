@@ -18,19 +18,6 @@ return {
 		},
 	},
 
-	-- dap (debuggings)
-	{
-		"mfussenegger/nvim-dap",
-		ft = { "go", "python" }, -- Load only for Go and Python files
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-			"theHamsta/nvim-dap-virtual-text",
-			-- Language-specific debug adapters
-			"leoluz/nvim-dap-go",
-			"mfussenegger/nvim-dap-python",
-		},
-	},
-
 	-- auto sessions
 	{
 		"rmagatti/auto-session",
