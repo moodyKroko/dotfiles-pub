@@ -1,12 +1,13 @@
-# disable progress bars globally to speed up module imports
-$ProgressPreference = 'SilentlyContinue'
-
-$script:path = @{
-    OhMyPosh = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "robbyrussel.omp.json")
-    PowerShell = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
-    Neovim = [System.IO.Path]::Combine($HOME, ".config", "nvim", "init.lua")
-    Git = [System.IO.Path]::Combine($HOME, ".gitconfig")
+if ($PSVersionTable.PSVersion.Major -lt 7) {
+    Write-Host "PowerShell version is older than 7.0. Profile will not load"
+    Exit
 }
+
+#change for "robbyrussel.omp.json"
+$OhMyPosh = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "star.omp.json")
+$PowerShell = [System.IO.Path]::Combine($HOME, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
+$Neovim = [System.IO.Path]::Combine($HOME, ".config", "nvim", "init.lua")
+$Git = [System.IO.Path]::Combine($HOME, ".gitconfig")
 
 $env:EDITOR = "notepad++"
 
@@ -15,7 +16,7 @@ Import-Module -Name Terminal-Icons
 Import-Module PSReadLine
 Import-Module PSFzf
 
-# Configure PSReadLine after import
+## Configure PSReadLine after import
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
 Set-PSReadLineOption -PredictionSource History
@@ -44,7 +45,6 @@ $functions = @{
     'c' = { Clear-Host }
     'gs' = { git status }
     'gd' = { git diff }
-    'refresh' = { . $PROFILE }
     'xop' = { Start-Process . }
     'open' = { Start-Process }
     'll' = { eza -la --git --no-filesize --no-quotes --classify=always --color=always --icons=always --no-symlinks --no-user --group-directories-first --sort name --ignore-glob="*.DAT|*.dat.*|*.DAT*|*.ini" }
@@ -56,22 +56,36 @@ $functions = @{
     'tig' = { & 'C:\Program Files\Git\usr\bin\tig.exe' }
     'npp' = { & 'C:\Program Files\Notepad++\notepad++.exe'}
     'omp-up' = { winget upgrade JanDeDobbeleer.OhMyPosh -s winget }
-    'pconf' = { nvim $script:path.PowerShell }
-    'vconf' = { nvim $script:path.Neovim }
-    'gconf' = { nvim $script:path.Git }
+    'pconf' = { nvim $PowerShell }
+    'vconf' = { nvim $Neovim }
+    'gconf' = { nvim $Git }
 }
 
 # Register functions efficiently
 $functions.GetEnumerator() | ForEach-Object {
     $name = $_.Key
     $value = $_.Value
-    
+
     if (-not (Test-Path Function:$name)) {
         Set-Item -Path "function:\$name" -Value $value
     }
 }
 
-function .. { cd .. }
+function Invoke-ProfileReload {
+    . $PROFILE
+}
+# Reloading is a bad idea because of aliases...
+New-Alias -Name reload -Value Invoke-ProfileReload
+
+function Get-PathElements {
+    $delim = ";"
+
+    $env:PATH -split $delim | ForEach-Object {
+        Write-Output $_
+    }
+}
+New-Alias -Name path -Value Get-PathElements
 
 # Always keep this as the last line
-oh-my-posh init pwsh --config $script:path.OhMyPosh | Invoke-Expression
+#oh-my-posh init pwsh --config 'https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config $OhMyPosh | Invoke-Expression

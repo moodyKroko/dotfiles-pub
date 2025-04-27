@@ -31,6 +31,7 @@ Remove-Item alias:man -ErrorAction SilentlyContinue
 $aliasMap = @{
     'scp' = 'scoop'
     'vim' = 'nvim'
+    'lg' = 'lazygit'
     'grep' = 'findstr'
     'g' = 'git'
     'l' = 'ls'
