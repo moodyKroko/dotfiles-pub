@@ -39,6 +39,12 @@
       "type": "prompt"
     }
   ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "#ffffff",
+    "template": "\u279c "
+  },
   "final_space": true,
+  "shell_integration": true,
   "version": 3
 }

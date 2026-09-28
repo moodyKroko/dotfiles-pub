@@ -1,6 +1,7 @@
 [user]
 	name = "moodyKroko"
 	email = "59341541+moodyKroko@users.noreply.github.com"
+	signingkey = C:\\Users\\james\\.ssh\\id_ed25519.pub
 [core]
   editor=nvim
 	excludesfile = ~/.gitignore_global
@@ -64,3 +65,9 @@
 	process = git-lfs filter-process
 [alias]
   d = difftool
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[credential]
+	helper = cache

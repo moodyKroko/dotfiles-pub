@@ -70,35 +70,24 @@ return {
   },
 
   {
-    "catppuccin/nvim",
-    lazy = false,
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("catppuccin").setup({
-        flavour = "macchiato",
-        transparent_background = true,
-        float = {
-          transparent = true,
-          solid = false,
-        },
-        integrations = {
-          blink_cmp = true,
-          rainbow_delimiters = true,
-          lsp_trouble = true,
-        },
-      })
-      vim.cmd.colorscheme "catppuccin-nvim"
-    end,
+    "catppuccin",
+    opts = {
+      flavour = "macchiato",
+      transparent_background = true,
+      integrations = {
+        blink_cmp = true,
+        rainbow_delimiters = true,
+        lsp_trouble = true
+      }
+    },
   },
 
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     -- colorscheme = "one_monokai",
-  --     -- colorscheme = "tokyonight",
-  --     -- colorscheme = "catppuccin-nvim",
-  --     colorscheme = "catppuccin-macchiato",
-  --   },
-  -- },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      -- colorscheme = "one_monokai",
+      -- colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
+    },
+  },
 }

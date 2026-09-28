@@ -7,44 +7,39 @@
       "segments": [
         {
           "foreground": "#98C379",
+          "foreground_templates": ["{{ if gt .Code 0 }}#E06C75{{ end }}"],
           "style": "plain",
           "template": "\u279c",
           "type": "text"
         },
         {
           "foreground": "#56B6C2",
-          "properties": {
+          "options": {
             "style": "folder"
           },
           "style": "plain",
-          "template": " {{ .Path }} ",
+          "template": "  {{ .Path }}",
           "type": "path"
         },
         {
           "foreground": "#D0666F",
-          "properties": {
+          "options": {
             "branch_icon": ""
           },
           "style": "plain",
-          "template": "<#5FAAE8>git:(</>{{ .HEAD }}<#5FAAE8>)</>",
+          "template": " <#5FAAE8>git:(</>{{ .HEAD }}{{ if .Working.Changed }} <#FFEB3B>{{ .Working.String }}</>{{ end }}<#5FAAE8>)</>{{ if or .Working.Changed .Staging.Changed }} <#FFEB3B>\u2717</>{{ end }}",
           "type": "git"
         },
         {
-          "foreground": "#BF616A",
+          "foreground": "#ffd43b",
           "style": "plain",
-          "template": " \u2717",
-          "type": "status"
+          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
         }
       ],
       "type": "prompt"
     }
   ],
-  "transient_prompt": {
-    "background": "transparent",
-    "foreground": "#ffffff",
-    "template": "\u279c "
-  },
   "final_space": true,
-  "shell_integration": true,
-  "version": 3
+  "version": 4
 }
