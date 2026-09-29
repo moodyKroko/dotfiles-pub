@@ -72,6 +72,8 @@ $functions = @{
     'gconf' = { nvim $Git }
 
     # docker aliases
+    'dbt' = {docker build -t }
+
     'dcu' = { docker compose up }
     'dcd' = { docker compose down }
     'dr' = { docker run }
